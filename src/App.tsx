@@ -1,8 +1,13 @@
 import React, { FC } from 'react'
-// import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import About from './About'
 
 const App: FC = () => {
-   return <></>
+   return (
+      <BrowserRouter>
+         <Route path="./About.tsx" element={About} />
+      </BrowserRouter>
+   )
 }
 
 export default App
