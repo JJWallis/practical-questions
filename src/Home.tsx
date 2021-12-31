@@ -1,10 +1,9 @@
 import React, { FC } from 'react'
-import { Link, RouterProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface Props {}
 
-const Home: FC<Props> = ({}) => {
-   //    console.log(location)
+const Home: FC<Props> = () => {
    return (
       <div>
          <Link to="/about">About</Link>

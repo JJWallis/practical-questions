@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
+import { RouteProps } from 'react-router-dom'
 
-const About: FC = () => {
+interface Props extends RouteProps {}
+
+const About: FC<Props> = ({}) => {
    return <div>About page!</div>
 }
 
