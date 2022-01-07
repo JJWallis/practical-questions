@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const App: FC = () => {
    return (
       <>
-         <div>App page!</div>
+         <div style={{ color: 'red' }}>App page!</div>
          <Link to="/home">Home</Link>
          <Link to="/about">About</Link>
       </>

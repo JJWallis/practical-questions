@@ -8,7 +8,7 @@ const Home: FC<Props> = () => {
       <div>
          <Link to="/">App</Link>
          <Link to="/about">About</Link>
-         <div>Home page!</div>
+         <div style={{ color: 'orange' }}>Home page!</div>
       </div>
    )
 }

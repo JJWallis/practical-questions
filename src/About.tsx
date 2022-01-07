@@ -6,7 +6,7 @@ const About: FC = () => {
       <>
          <Link to="/">App</Link>
          <Link to="/home">Home</Link>
-         <div>About page!</div>
+         <div style={{ color: 'green' }}>About page!</div>
       </>
    )
 }
