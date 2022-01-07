@@ -1,10 +1,13 @@
 import React, { FC } from 'react'
-import { RouteProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-interface Props extends RouteProps {}
-
-const About: FC<Props> = ({}) => {
-   return <div>About page!</div>
+const About: FC = () => {
+   return (
+      <>
+         <Link to="/">Home</Link>
+         <div>About page!</div>
+      </>
+   )
 }
 
 export default About

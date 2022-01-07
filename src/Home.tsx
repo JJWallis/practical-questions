@@ -7,7 +7,6 @@ const Home: FC<Props> = () => {
    return (
       <div>
          <Link to="/about">About</Link>
-         <button>About page too!</button>
          <div>Home page!</div>
       </div>
    )

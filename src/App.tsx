@@ -8,7 +8,7 @@ const App: FC = () => {
       <BrowserRouter>
          <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about/:id" element={<About />} />
+            <Route path="/about/" element={<About />} />
             <Route path="/" element={<div>404 - Page not found!</div>} />
          </Routes>
       </BrowserRouter>
