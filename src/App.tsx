@@ -31,6 +31,14 @@ const App: FC = () => {
                <button>milk</button>
             </li>
          </ol>
+         <hr className="separator" />
+         <ul className="shopping-list">
+            <li>
+               <input type="checkbox" />
+               bread
+               <button>&times;</button>
+            </li>
+         </ul>
       </main>
    )
 }

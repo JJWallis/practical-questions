@@ -99,12 +99,18 @@ select {
    }
 }
 
+button:hover,
+input:hover {
+   cursor: pointer;
+}
+
 /* actual */
 
 main {
    min-height: 100vh;
    display: grid;
    place-content: center;
+   gap: 1rem;
 }
 
 .label {
@@ -130,7 +136,9 @@ main {
    text-align: left;
 }
 
-button:hover,
-input:hover {
-   cursor: pointer;
+.separator {
+   width: 100%;
+}
+
+.shopping-list {
 }
