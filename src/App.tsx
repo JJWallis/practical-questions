@@ -34,9 +34,9 @@ const App: FC = () => {
          <hr className="separator" />
          <ul className="shopping-list">
             <li>
-               <input type="checkbox" />
+               <input aria-label="toggle list item" type="checkbox" />
                bread
-               <button>&times;</button>
+               <button aria-label="remove list item">&times;</button>
             </li>
          </ul>
       </main>

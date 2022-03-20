@@ -141,4 +141,11 @@ main {
 }
 
 .shopping-list {
+   outline: 1px solid black;
+}
+
+.shopping-list li {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
 }
