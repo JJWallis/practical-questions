@@ -107,6 +107,18 @@ main {
    place-content: center;
 }
 
+main,
+fieldset {
+   display: grid;
+   place-content: center;
+}
+
+fieldset {
+   border: 0;
+   padding: 0;
+   margin: 0;
+}
+
 .label {
    position: absolute;
    top: 9000px;
