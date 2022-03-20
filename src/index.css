@@ -125,7 +125,6 @@ main {
 }
 
 .results-list button {
-   outline: 1px solid red;
    display: inline-block;
    width: 100%;
    text-align: left;
