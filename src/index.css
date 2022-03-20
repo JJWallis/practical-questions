@@ -32,8 +32,8 @@ h6 {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul,
+ol {
    list-style: none;
    padding: 0;
    margin: 0;
@@ -105,18 +105,6 @@ main {
    min-height: 100vh;
    display: grid;
    place-content: center;
-}
-
-main,
-fieldset {
-   display: grid;
-   place-content: center;
-}
-
-fieldset {
-   border: 0;
-   padding: 0;
-   margin: 0;
 }
 
 .label {
