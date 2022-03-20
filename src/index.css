@@ -114,3 +114,24 @@ main {
    font-size: 0;
    opacity: 0;
 }
+
+.input {
+   border: 2px solid black;
+   /* focus styles */
+}
+
+.results-list {
+   border: 2px solid black;
+}
+
+.results-list button {
+   outline: 1px solid red;
+   display: inline-block;
+   width: 100%;
+   text-align: left;
+}
+
+button:hover,
+input:hover {
+   cursor: pointer;
+}

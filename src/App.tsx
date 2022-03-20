@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import './index.css'
 
-// link same idx as item viewing in results list with its btn's tab index
+// link same idx as item viewing in results list with its btn's (add accessibility) tab index
 
 const App: FC = () => {
    const [search, setSearch] = useState('')
@@ -18,7 +18,7 @@ const App: FC = () => {
             value={search}
             onChange={({ target }) => setSearch(target.value)}
          />
-         <ol>
+         <ol className="results-list">
             <li>
                <button>bread</button>
             </li>
