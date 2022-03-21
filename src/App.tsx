@@ -30,10 +30,13 @@ function retrieveShoppingList(key: string): ShoppingList {
 }
 
 function reducer(action: ShoppingListActions, state: ShoppingList) {
-   const { type } = action
-   switch (state) {
-      case action: {
-         return {}
+   const { type, payload } = action
+   switch (type) {
+      case 'ADD_ITEM': {
+         return [...state, payload]
+      }
+      case 'TOGGLE_ITEM': {
+         return []
       }
       default: {
          return state
