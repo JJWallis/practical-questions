@@ -36,12 +36,23 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
          return [...state, payload]
       }
       case 'TOGGLE_ITEM': {
+         const test = state.map((item) =>
+            item.id === payload
+               ? {
+                    ...item,
+                    ['checked' as keyof ShoppingListItem]: !item.checked,
+                 }
+               : item
+         ) // test
          const copy = state
          const target = copy.find(
             ({ id }) => id === payload
          ) as ShoppingListItem
          target.checked = !target.checked
          return copy
+      }
+      case 'REMOVE_ITEM': {
+         return []
       }
       default: {
          return state
@@ -50,7 +61,7 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
 }
 
 const App: FC = () => {
-   const [shoppingList, dispatch] = useReducer<ShoppingList>(
+   const [shoppingList, dispatch] = useReducer(
       reducer,
       [],
       retrieveShoppingList
