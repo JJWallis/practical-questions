@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useEffect, useReducer, useRef, useState } from 'react'
 import './index.css'
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
@@ -22,6 +22,11 @@ function reducer(action, state) {
 }
 
 const App: FC = () => {
+   const [shoppingList, dispatch] = useReducer(
+      reducer,
+      [],
+      retrieveShoppingList
+   )
    const [search, setSearch] = useState('')
    const searchRef = useRef<HTMLInputElement>(null)
 
