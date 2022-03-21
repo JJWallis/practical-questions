@@ -67,13 +67,7 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
 const App: FC = () => {
    const [shoppingList, dispatch] = useReducer(
       reducer,
-      [
-         {
-            id: 1,
-            checked: false,
-            value: 'milk',
-         },
-      ],
+      [],
       retrieveShoppingList
    )
 
