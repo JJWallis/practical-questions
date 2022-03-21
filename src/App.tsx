@@ -4,6 +4,23 @@ import './index.css'
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
 
+function reducer(action, state) {
+   const { type } = action
+   switch (state) {
+      case type: {
+         return {}
+      }
+   }
+
+   switch (key) {
+      case value:
+         break
+
+      default:
+         break
+   }
+}
+
 const App: FC = () => {
    const [search, setSearch] = useState('')
    const searchRef = useRef<HTMLInputElement>(null)
