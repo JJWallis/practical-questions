@@ -24,8 +24,10 @@ type ShoppingListActions =
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
 
-function retrieveShoppingList(key: string): ShoppingList {
-   const prevList = localStorage.getItem(key)
+const LOCAL_STORAGE_KEY = 'shoppingList'
+
+function retrieveShoppingList(): ShoppingList {
+   const prevList = localStorage.getItem(LOCAL_STORAGE_KEY)
    return prevList ? JSON.parse(prevList) : []
 }
 
@@ -36,23 +38,24 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
          return [...state, payload]
       }
       case 'TOGGLE_ITEM': {
-         const test = state.map((item) =>
+         // test
+         return state.map((item) =>
             item.id === payload
                ? {
                     ...item,
                     ['checked' as keyof ShoppingListItem]: !item.checked,
                  }
                : item
-         ) // test
-         const copy = state
-         const target = copy.find(
-            ({ id }) => id === payload
-         ) as ShoppingListItem
-         target.checked = !target.checked
-         return copy
+         )
+         // const copy = state
+         // const target = copy.find(
+         //    ({ id }) => id === payload
+         // ) as ShoppingListItem
+         // target.checked = !target.checked
+         // return copy
       }
       case 'REMOVE_ITEM': {
-         return []
+         return state.filter(({ id }) => id !== payload)
       }
       default: {
          return state
@@ -61,11 +64,12 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
 }
 
 const App: FC = () => {
-   const [shoppingList, dispatch] = useReducer(
+   const [shoppingList, dispatch] = useReducer<ShoppingList>(
       reducer,
       [],
       retrieveShoppingList
    )
+
    const [search, setSearch] = useState('')
    const searchRef = useRef<HTMLInputElement>(null)
 
