@@ -36,7 +36,12 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
          return [...state, payload]
       }
       case 'TOGGLE_ITEM': {
-         return []
+         const copy = state
+         const target = copy.find(
+            ({ id }) => id === payload
+         ) as ShoppingListItem
+         target.checked = !target.checked
+         return copy
       }
       default: {
          return state
