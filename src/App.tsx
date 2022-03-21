@@ -12,8 +12,14 @@ type ShoppingListActions =
         type: 'ADD_ITEM'
         payload: ShoppingListItem
      }
-   | {}
-   | {}
+   | {
+        type: 'REMOVE_ITEM'
+        payload: number
+     }
+   | {
+        type: 'TOGGLE_ITEM'
+        payload: number
+     }
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
@@ -23,10 +29,10 @@ function retrieveShoppingList(key: string): ShoppingList {
    return prevList ? JSON.parse(prevList) : []
 }
 
-function reducer(action, state: ShoppingList) {
+function reducer(action: ShoppingListActions, state: ShoppingList) {
    const { type } = action
    switch (state) {
-      case type: {
+      case action: {
          return {}
       }
       default: {
