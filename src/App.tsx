@@ -74,6 +74,11 @@ const App: FC = () => {
    const searchRef = useRef<HTMLInputElement>(null)
 
    useEffect(() => searchRef.current?.focus(), [])
+   useEffect(
+      () =>
+         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(shoppingList)),
+      [shoppingList]
+   )
 
    return (
       <main>
