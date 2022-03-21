@@ -36,24 +36,23 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
    const { type, payload } = action
    switch (type) {
       case 'ADD_ITEM': {
-         return [...state, payload]
+         return [...state, action.payload]
       }
       case 'TOGGLE_ITEM': {
-         // test
-         return state.map((item) =>
-            item.id === payload
-               ? {
-                    ...item,
-                    ['checked' as keyof ShoppingListItem]: !item.checked,
-                 }
-               : item
-         )
-         // const copy = state
-         // const target = copy.find(
-         //    ({ id }) => id === payload
-         // ) as ShoppingListItem
-         // target.checked = !target.checked
-         // return copy
+         // return state.map((item) =>
+         //    item.id === payload
+         //       ? {
+         //            ...item,
+         //            ['checked' as keyof ShoppingListItem]: !item.checked,
+         //         }
+         //       : item
+         // )
+         const copy = state
+         const target = copy.find(
+            ({ id }) => id === payload
+         ) as ShoppingListItem
+         target.checked = !target.checked
+         return copy
       }
       case 'REMOVE_ITEM': {
          return state.filter(({ id }) => id !== payload)
