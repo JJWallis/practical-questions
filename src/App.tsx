@@ -23,6 +23,7 @@ type ShoppingListActions =
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
+// useEffect = anytime change in shopping list state - save to local storage
 
 const LOCAL_STORAGE_KEY = 'shoppingList'
 
@@ -31,7 +32,7 @@ function retrieveShoppingList(): ShoppingList {
    return prevList ? JSON.parse(prevList) : []
 }
 
-function reducer(action: ShoppingListActions, state: ShoppingList) {
+function reducer(state: ShoppingList, action: ShoppingListActions) {
    const { type, payload } = action
    switch (type) {
       case 'ADD_ITEM': {
@@ -64,7 +65,7 @@ function reducer(action: ShoppingListActions, state: ShoppingList) {
 }
 
 const App: FC = () => {
-   const [shoppingList, dispatch] = useReducer<ShoppingList>(
+   const [shoppingList, dispatch] = useReducer(
       reducer,
       [],
       retrieveShoppingList
