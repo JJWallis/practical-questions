@@ -1,8 +1,20 @@
 import React, { FC, useEffect, useReducer, useRef, useState } from 'react'
 import './index.css'
 
+type ShoppingList = null
+
+interface ShoppingListItem {
+   id: number
+   checked: boolean
+}
+
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
+
+function retrieveShoppingList(key: string) {
+   const prevList = localStorage.getItem(key)
+   return prevList ? JSON.parse(prevList) : []
+}
 
 function reducer(action, state) {
    const { type } = action
