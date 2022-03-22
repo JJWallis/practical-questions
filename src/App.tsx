@@ -62,9 +62,23 @@ const App: FC = () => {
       [],
       retrieveShoppingList
    )
-
    const [search, setSearch] = useState('')
+   const [results, setResults] = useState<string[] | null>(null)
    const searchRef = useRef<HTMLInputElement>(null)
+
+   useEffect(() => {
+      const fetchResults = async () => {
+         try {
+            const res = await fetch('https://api.frontendeval.com/fake/food/mi')
+            const data = await res.json()
+            console.log(data)
+            setResults(data)
+         } catch (error) {
+            console.error(error)
+         }
+      }
+      fetchResults()
+   }, [])
 
    useEffect(() => searchRef.current?.focus(), [])
    useEffect(
