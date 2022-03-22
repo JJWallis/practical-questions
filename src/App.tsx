@@ -23,7 +23,6 @@ type ShoppingListActions =
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
 // reset input to empty str on result btn click + re-focus
-// useEffect = anytime change in shopping list state - save to local storage
 
 const LOCAL_STORAGE_KEY = 'shoppingList'
 
