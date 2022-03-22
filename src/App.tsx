@@ -48,7 +48,7 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
          //         }
          //       : item
          // )
-         const copy = state
+         const copy = [...state]
          const target = copy.find(
             ({ id }) => id === payload
          ) as ShoppingListItem
@@ -114,27 +114,27 @@ const App: FC = () => {
          </ol>
          <hr className="separator" />
          <ul className="shopping-list">
-            {shoppingList.map(({ checked, value, id }) => (
+            {shoppingList.map((item) => (
                <li key={uuid()}>
                   <div>
                      <input
                         type="checkbox"
                         aria-label="toggle food item"
-                        checked={checked}
-                        onChange={({ target }) =>
+                        checked={item.checked}
+                        onChange={(e) =>
                            dispatch({
                               type: 'TOGGLE_ITEM',
-                              payload: id,
-                              checked: target.checked,
+                              payload: item.id,
+                              checked: e.target.checked,
                            })
                         }
                      />
-                     {value}
+                     {item.value}
                   </div>
                   <button
                      aria-label="remove food item"
                      onClick={() =>
-                        dispatch({ type: 'REMOVE_ITEM', payload: id })
+                        dispatch({ type: 'REMOVE_ITEM', payload: item.id })
                      }
                   >
                      &times;
