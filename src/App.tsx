@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useReducer, useRef, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 import './index.css'
 
 type ShoppingList = ShoppingListItem[] | []
@@ -104,11 +105,11 @@ const App: FC = () => {
          <hr className="separator" />
          <ul className="shopping-list">
             {shoppingList.map(({ checked, value, id }) => (
-               <li>
+               <li key={uuid()}>
                   <div>
                      <input
-                        aria-label="toggle food item"
                         type="checkbox"
+                        aria-label="toggle food item"
                         checked={checked}
                         onChange={({ target }) =>
                            dispatch({
@@ -118,7 +119,7 @@ const App: FC = () => {
                            })
                         }
                      />
-                     bread
+                     {value}
                   </div>
                   <button aria-label="remove food item">&times;</button>
                </li>
