@@ -2,12 +2,16 @@ import React, { FC, useEffect, useReducer, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import './index.css'
 
-type ShoppingList = ShoppingListItem[] | []
 interface ShoppingListItem {
    id: number
    checked: boolean
    value: string
 }
+interface SearchResults {
+   searchTerm: string
+   results: string[] | null
+}
+type ShoppingList = ShoppingListItem[] | []
 type ShoppingListActions =
    | {
         type: 'ADD_ITEM'
@@ -22,9 +26,6 @@ type ShoppingListActions =
         payload: number
         checked: boolean
      }
-
-// link same idx as item viewing in results list with its btn's (add accessibility) tab index
-// reset input to empty str on result btn click + re-focus
 
 const LOCAL_STORAGE_KEY = 'shoppingList'
 
@@ -56,6 +57,9 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
    }
 }
 
+// link same idx as item viewing in results list with its btn's (add accessibility) tab index
+// reset input to empty str on result btn click + re-focus
+
 const App: FC = () => {
    const [shoppingList, dispatch] = useReducer(
       reducer,
@@ -64,6 +68,10 @@ const App: FC = () => {
    )
    const [search, setSearch] = useState('')
    const [results, setResults] = useState<string[] | null>(null)
+   const [searchResults, setSearchResults] = useState<SearchResults>({
+      searchTerm: '',
+      results: null,
+   })
    const searchRef = useRef<HTMLInputElement>(null)
 
    useEffect(() => {
