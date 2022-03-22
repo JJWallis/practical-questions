@@ -66,8 +66,6 @@ const App: FC = () => {
       [],
       retrieveShoppingList
    )
-   const [search, setSearch] = useState('')
-   const [results, setResults] = useState<string[] | null>(null)
    const [searchResults, setSearchResults] = useState<SearchResults>({
       searchTerm: '',
       results: null,
@@ -78,9 +76,9 @@ const App: FC = () => {
       const fetchResults = async () => {
          try {
             const res = await fetch('https://api.frontendeval.com/fake/food/mi')
-            const data = await res.json()
+            const data: string[] = await res.json()
+            setSearchResults({ ...searchResults, results: data })
             console.log(data)
-            setResults(data)
          } catch (error) {
             console.error(error)
          }
@@ -105,19 +103,24 @@ const App: FC = () => {
             id="search-input"
             className="input"
             ref={searchRef}
-            value={search}
-            onChange={({ target }) => setSearch(target.value)}
+            value={searchResults.searchTerm}
+            onChange={(e) =>
+               setSearchResults({
+                  ...searchResults,
+                  searchTerm: e.target.value,
+               })
+            }
          />
          <ol className="results-list">
             <li>
                <button
-                  onClick={(e) =>
+                  onClick={({ currentTarget }) =>
                      dispatch({
                         type: 'ADD_ITEM',
                         payload: {
                            id: shoppingList.length + 1,
                            checked: false,
-                           value: e.currentTarget.textContent as string,
+                           value: currentTarget.textContent as string,
                         },
                      })
                   }
