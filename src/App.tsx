@@ -19,6 +19,7 @@ type ShoppingListActions =
    | {
         type: 'TOGGLE_ITEM'
         payload: number
+        checked: boolean
      }
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
@@ -50,7 +51,7 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
          const target = copy.find(
             ({ id }) => id === payload
          ) as ShoppingListItem
-         target.checked = !target.checked
+         target.checked = action.checked
          return copy
       }
       case 'REMOVE_ITEM': {
@@ -102,13 +103,26 @@ const App: FC = () => {
          </ol>
          <hr className="separator" />
          <ul className="shopping-list">
-            <li>
-               <div>
-                  <input aria-label="toggle food item" type="checkbox" />
-                  bread
-               </div>
-               <button aria-label="remove food item">&times;</button>
-            </li>
+            {shoppingList.map(({ checked, value, id }) => (
+               <li>
+                  <div>
+                     <input
+                        aria-label="toggle food item"
+                        type="checkbox"
+                        checked={checked}
+                        onChange={({ target }) =>
+                           dispatch({
+                              type: 'TOGGLE_ITEM',
+                              payload: id,
+                              checked: target.checked,
+                           })
+                        }
+                     />
+                     bread
+                  </div>
+                  <button aria-label="remove food item">&times;</button>
+               </li>
+            ))}
          </ul>
       </main>
    )
