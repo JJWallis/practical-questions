@@ -121,7 +121,13 @@ const App: FC = () => {
                            })
                         }
                      />
-                     {value}
+                     <span
+                        style={{
+                           textDecoration: `${checked && 'line-through'}`,
+                        }}
+                     >
+                        {value}
+                     </span>
                   </div>
                   <button
                      aria-label="remove food item"
