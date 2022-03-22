@@ -96,9 +96,6 @@ const App: FC = () => {
          />
          <ol className="results-list">
             <li>
-               <button>bread</button>
-            </li>
-            <li>
                <button>milk</button>
             </li>
          </ol>
@@ -121,7 +118,14 @@ const App: FC = () => {
                      />
                      {value}
                   </div>
-                  <button aria-label="remove food item">&times;</button>
+                  <button
+                     aria-label="remove food item"
+                     onClick={() =>
+                        dispatch({ type: 'REMOVE_ITEM', payload: id })
+                     }
+                  >
+                     &times;
+                  </button>
                </li>
             ))}
          </ul>
