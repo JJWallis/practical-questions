@@ -96,7 +96,20 @@ const App: FC = () => {
          />
          <ol className="results-list">
             <li>
-               <button>milk</button>
+               <button
+                  onClick={({ currentTarget }) =>
+                     dispatch({
+                        type: 'ADD_ITEM',
+                        payload: {
+                           id: 1,
+                           checked: false,
+                           value: 'hey',
+                        },
+                     })
+                  }
+               >
+                  milk
+               </button>
             </li>
          </ol>
          <hr className="separator" />
