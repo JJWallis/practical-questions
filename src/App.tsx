@@ -106,27 +106,27 @@ const App: FC = () => {
          </ol>
          <hr className="separator" />
          <ul className="shopping-list">
-            {shoppingList.map((item) => (
+            {shoppingList.map(({ checked, id, value }) => (
                <li key={uuid()}>
                   <div>
                      <input
                         type="checkbox"
                         aria-label="toggle food item"
-                        checked={item.checked}
+                        checked={checked}
                         onChange={(e) =>
                            dispatch({
                               type: 'TOGGLE_ITEM',
-                              payload: item.id,
+                              payload: id,
                               checked: e.target.checked,
                            })
                         }
                      />
-                     {item.value}
+                     {value}
                   </div>
                   <button
                      aria-label="remove food item"
                      onClick={() =>
-                        dispatch({ type: 'REMOVE_ITEM', payload: item.id })
+                        dispatch({ type: 'REMOVE_ITEM', payload: id })
                      }
                   >
                      &times;
