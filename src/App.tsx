@@ -40,14 +40,6 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
          return [...state, action.payload]
       }
       case 'TOGGLE_ITEM': {
-         // return state.map((item) =>
-         //    item.id === payload
-         //       ? {
-         //            ...item,
-         //            ['checked' as keyof ShoppingListItem]: !item.checked,
-         //         }
-         //       : item
-         // )
          const copy = [...state]
          const target = copy.find(
             ({ id }) => id === payload
@@ -97,13 +89,13 @@ const App: FC = () => {
          <ol className="results-list">
             <li>
                <button
-                  onClick={({ currentTarget }) =>
+                  onClick={(e) =>
                      dispatch({
                         type: 'ADD_ITEM',
                         payload: {
-                           id: 1,
+                           id: shoppingList.length + 1,
                            checked: false,
-                           value: 'hey',
+                           value: e.currentTarget.textContent as string,
                         },
                      })
                   }
