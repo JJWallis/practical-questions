@@ -74,9 +74,9 @@ const App: FC = () => {
    const handleResultBtnFocus = (
       e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
    ) => {
-      const { resultsFocus, results } = searchResults
-      const { length } = results as string[]
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+         const { resultsFocus, results } = searchResults
+         const { length } = results as string[]
          if (length > 0) {
             setSearchResults((prevResults) => ({
                ...prevResults,
@@ -151,7 +151,8 @@ const App: FC = () => {
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
-                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused)
+                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused
+                     // https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
                      onKeyDown={handleResultBtnFocus}
                      onClick={({ currentTarget }) => {
                         dispatch({
