@@ -10,6 +10,7 @@ interface ShoppingListItem {
 interface SearchResults {
    searchTerm: string
    results: string[] | null
+   resultsFocus: number
 }
 type ShoppingList = ShoppingListItem[] | []
 type ShoppingListActions =
@@ -68,8 +69,11 @@ const App: FC = () => {
    const [searchResults, setSearchResults] = useState<SearchResults>({
       searchTerm: '',
       results: null,
+      resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
+
+   const handleResultBtnFocus = () => {}
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
@@ -122,7 +126,7 @@ const App: FC = () => {
                })
             }
          />
-         <ol className="results-list">
+         <ol className="results-list" onKeyDown={handleResultBtnFocus}>
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
