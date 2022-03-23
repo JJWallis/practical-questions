@@ -119,22 +119,24 @@ const App: FC = () => {
             }
          />
          <ol className="results-list">
-            <li>
-               <button
-                  onClick={({ currentTarget }) =>
-                     dispatch({
-                        type: 'ADD_ITEM',
-                        payload: {
-                           id: shoppingList.length + 1,
-                           checked: false,
-                           value: currentTarget.textContent as string,
-                        },
-                     })
-                  }
-               >
-                  milk
-               </button>
-            </li>
+            {searchResults.results?.map((result) => (
+               <li key={uuid()}>
+                  <button
+                     onClick={({ currentTarget }) =>
+                        dispatch({
+                           type: 'ADD_ITEM',
+                           payload: {
+                              id: shoppingList.length + 1,
+                              checked: false,
+                              value: currentTarget.textContent as string,
+                           },
+                        })
+                     }
+                  >
+                     {result}
+                  </button>
+               </li>
+            ))}
          </ol>
          <hr className="separator" />
          <ul className="shopping-list">
