@@ -73,7 +73,9 @@ const App: FC = () => {
    })
    const searchRef = useRef<HTMLInputElement>(null)
 
-   const handleResultBtnFocus = () => {}
+   const handleResultBtnFocus = (
+      e: React.KeyboardEvent<HTMLButtonElement>
+   ) => {}
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
@@ -126,11 +128,12 @@ const App: FC = () => {
                })
             }
          />
-         <ol className="results-list" onKeyDown={handleResultBtnFocus}>
+         <ol className="results-list">
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
                      // addBtnRef + map() = check if resultsFocus state num === idx (addBtnRef focused)
+                     onKeyDown={handleResultBtnFocus}
                      onClick={({ currentTarget }) => {
                         dispatch({
                            type: 'ADD_ITEM',
