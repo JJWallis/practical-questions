@@ -58,7 +58,7 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
 }
 
 // link same idx as item viewing in results list with its btn's (add accessibility) tab index
-// reset input to empty str on result btn click + re-focus
+// re-focus on add btn click
 
 const App: FC = () => {
    const [shoppingList, dispatch] = useReducer(
@@ -90,6 +90,11 @@ const App: FC = () => {
             }
          }
          fetchResults()
+      } else {
+         setSearchResults((prevResults) => ({
+            ...prevResults,
+            results: null,
+         }))
       }
    }, [searchResults.searchTerm])
 
@@ -122,7 +127,7 @@ const App: FC = () => {
             {searchResults.results?.map((result) => (
                <li key={uuid()}>
                   <button
-                     onClick={({ currentTarget }) =>
+                     onClick={({ currentTarget }) => {
                         dispatch({
                            type: 'ADD_ITEM',
                            payload: {
@@ -131,7 +136,8 @@ const App: FC = () => {
                               value: currentTarget.textContent as string,
                            },
                         })
-                     }
+                        searchRef.current?.focus()
+                     }}
                   >
                      {result}
                   </button>
