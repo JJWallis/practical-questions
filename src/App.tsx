@@ -89,6 +89,7 @@ const App: FC = () => {
             }))
          }
       }
+      // if e.key === 'Enter' ? check length of results to be === 1 + then add item
    }
 
    useEffect(() => {
@@ -110,6 +111,7 @@ const App: FC = () => {
          }
          fetchResults()
       } else {
+         // refactor to sep func = prevent else
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: null,
