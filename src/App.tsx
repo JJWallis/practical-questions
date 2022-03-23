@@ -74,9 +74,9 @@ const App: FC = () => {
    const handleResultBtnFocus = (
       e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
    ) => {
+      const { resultsFocus, results } = searchResults
+      const { length } = results as string[]
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-         const { resultsFocus, results } = searchResults
-         const { length } = results as string[]
          if (length > 0) {
             setSearchResults((prevResults) => ({
                ...prevResults,
@@ -89,6 +89,7 @@ const App: FC = () => {
             }))
          }
       }
+      // if (e.key === 'Enter') length === 1 && addItem(results[resultsFocus])
       // if e.key === 'Enter' ? check length of results to be === 1 + then add item
       // : length of results === 0 + then add custom item
    }
@@ -112,7 +113,6 @@ const App: FC = () => {
          }
          fetchResults()
       } else {
-         // refactor to sep func = prevent else
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: null,
