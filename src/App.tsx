@@ -85,11 +85,12 @@ const App: FC = () => {
                      ? +1
                      : e.key === 'ArrowUp' && resultsFocus > 0
                      ? -1
-                     : 0, // could be a problem
+                     : 0, // could be a problem - should never occur
             }))
          }
       }
       // if e.key === 'Enter' ? check length of results to be === 1 + then add item
+      // : length of results === 0 + then add custom item
    }
 
    useEffect(() => {
