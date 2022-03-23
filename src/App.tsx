@@ -84,8 +84,8 @@ const App: FC = () => {
                results: data,
             }))
             console.log(data)
-         } catch (error) {
-            console.error(error)
+         } catch (error: any) {
+            console.error(error.message)
          }
       }
       fetchResults()
