@@ -73,22 +73,24 @@ const App: FC = () => {
    const searchRef = useRef<HTMLInputElement>(null)
 
    useEffect(() => {
-      const fetchResults = async () => {
-         try {
-            const res = await fetch(
-               `https://api.frontendeval.com/fake/food/${searchResults.searchTerm}`
-            )
-            const data: string[] = await res.json()
-            setSearchResults((prevResults) => ({
-               ...prevResults,
-               results: data,
-            }))
-            console.log(data)
-         } catch (error: any) {
-            console.error(error.message)
+      if (searchResults.searchTerm.length >= 2) {
+         const fetchResults = async () => {
+            try {
+               const res = await fetch(
+                  `https://api.frontendeval.com/fake/food/${searchResults.searchTerm}`
+               )
+               const data: string[] = await res.json()
+               setSearchResults((prevResults) => ({
+                  ...prevResults,
+                  results: data,
+               }))
+               console.log(data)
+            } catch (error: any) {
+               console.error(error.message)
+            }
          }
+         fetchResults()
       }
-      fetchResults()
    }, [searchResults.searchTerm])
 
    useEffect(() => searchRef.current?.focus(), [])
