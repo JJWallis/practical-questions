@@ -58,8 +58,6 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
    }
 }
 
-// link same idx as item viewing in results list with its btn's
-
 const App: FC = () => {
    const [shoppingList, dispatch] = useReducer(
       reducer,
@@ -74,8 +72,10 @@ const App: FC = () => {
    const searchRef = useRef<HTMLInputElement>(null)
 
    const handleResultBtnFocus = (
-      e: React.KeyboardEvent<HTMLButtonElement>
-   ) => {}
+      e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
+   ) => {
+      console.log(e)
+   }
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
@@ -99,6 +99,7 @@ const App: FC = () => {
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: null,
+            resultsFocus: 0,
          }))
       }
    }, [searchResults.searchTerm])
@@ -127,12 +128,13 @@ const App: FC = () => {
                   searchTerm: e.target.value,
                })
             }
+            onKeyDown={handleResultBtnFocus}
          />
          <ol className="results-list">
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
-                     // addBtnRef + map() = check if resultsFocus state num === idx (addBtnRef focused)
+                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused)
                      onKeyDown={handleResultBtnFocus}
                      onClick={({ currentTarget }) => {
                         dispatch({
