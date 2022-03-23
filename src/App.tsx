@@ -57,8 +57,7 @@ function reducer(state: ShoppingList, action: ShoppingListActions) {
    }
 }
 
-// link same idx as item viewing in results list with its btn's (add accessibility) tab index
-// re-focus on add btn click
+// link same idx as item viewing in results list with its btn's
 
 const App: FC = () => {
    const [shoppingList, dispatch] = useReducer(
@@ -124,9 +123,10 @@ const App: FC = () => {
             }
          />
          <ol className="results-list">
-            {searchResults.results?.map((result) => (
+            {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
+                     // addBtnRef + map() = check if resultsFocus state num === idx (addBtnRef focused)
                      onClick={({ currentTarget }) => {
                         dispatch({
                            type: 'ADD_ITEM',
