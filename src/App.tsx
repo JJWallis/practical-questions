@@ -74,7 +74,19 @@ const App: FC = () => {
    const handleResultBtnFocus = (
       e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
    ) => {
-      console.log(e)
+      const { resultsFocus, results } = searchResults
+      const { length } = results as string[]
+      if (length > 0) {
+         setSearchResults((prevResults) => ({
+            ...prevResults,
+            resultsFocus:
+               e.key === 'ArrowDown' && resultsFocus < length
+                  ? +1
+                  : e.key === 'ArrowUp' && resultsFocus > 0
+                  ? -1
+                  : 0, // could be a problem
+         }))
+      }
    }
 
    useEffect(() => {
