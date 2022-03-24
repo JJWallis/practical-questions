@@ -71,25 +71,25 @@ const App: FC = () => {
    })
    const searchRef = useRef<HTMLInputElement>(null)
 
-   const handleResultBtn = (
-      e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
-   ) => {
+   const handleResultBtn = ({
+      key,
+   }: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>) => {
       const { resultsFocus, results, searchTerm } = searchResults
       const { length: resultsLength } = results
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      if (key === 'ArrowDown' || key === 'ArrowUp') {
          if (resultsLength > 0) {
             setSearchResults((prevResults) => ({
                ...prevResults,
                resultsFocus:
-                  e.key === 'ArrowDown' && resultsFocus < resultsLength
+                  key === 'ArrowDown' && resultsFocus < resultsLength
                      ? +1
-                     : e.key === 'ArrowUp' && resultsFocus > 0
+                     : key === 'ArrowUp' && resultsFocus > 0
                      ? -1
                      : 0, // could be a problem - should never occur
             }))
          }
       }
-      if (e.key === 'Enter' && searchResults.searchTerm) {
+      if (key === 'Enter' && searchResults.searchTerm) {
          if (!resultsLength || resultsLength === 1)
             dispatch({
                type: 'ADD_ITEM',
@@ -159,7 +159,7 @@ const App: FC = () => {
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
-                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused
+                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused)
                      // https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
                      onKeyDown={handleResultBtn}
                      onClick={({ currentTarget }) => {
