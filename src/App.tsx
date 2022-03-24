@@ -89,9 +89,20 @@ const App: FC = () => {
             }))
          }
       }
-      // if (e.key === 'Enter') length === 1 && addItem(results[resultsFocus])
-      // if e.key === 'Enter' ? check length of results to be === 1 + then add item
-      // : length of results === 0 + then add custom item
+      if (e.key === 'Enter') {
+         const { results, searchTerm } = searchResults
+         const { length } = results as string[]
+         if (!length || length === 1)
+            dispatch({
+               type: 'ADD_ITEM',
+               payload: {
+                  id: shoppingList.length + 1,
+                  checked: false,
+                  value: searchTerm,
+               },
+            })
+         searchRef.current?.focus()
+      }
    }
 
    useEffect(() => {
