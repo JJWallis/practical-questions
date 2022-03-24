@@ -86,8 +86,8 @@ const App: FC = () => {
       if (key === 'ArrowDown' || key === 'ArrowUp') {
          const map = getMap()
          const targetItem = map.get(id as number)
-         console.log(id, targetItem)
          targetItem?.focus()
+         console.log(id, targetItem)
          if (resultsLength > 0) {
             // check if resultsFocus state num === idx + 1 => addBtnRef focused
             setSearchResults((prevResults) => ({
@@ -181,8 +181,8 @@ const App: FC = () => {
                            map.delete(key)
                         }
                      }}
-                     onKeyDown={
-                        (e) => handleResultBtn(e, idx + 1) // may never change => + 2 instead?
+                     onKeyDown={(e) =>
+                        handleResultBtn(e, searchResults.resultsFocus)
                      }
                      onClick={({ currentTarget }) => {
                         dispatch({
