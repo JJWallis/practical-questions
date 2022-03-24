@@ -100,7 +100,6 @@ const App: FC = () => {
                },
             })
       }
-      searchRef.current?.focus()
    }
 
    useEffect(() => {
@@ -126,7 +125,7 @@ const App: FC = () => {
             ...prevResults,
             results: [],
             resultsFocus: 0,
-         }))
+         })) // reset results list so prevResults don't persist
       }
    }, [searchResults.searchTerm])
 
