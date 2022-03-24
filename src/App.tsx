@@ -77,12 +77,16 @@ const App: FC = () => {
       return resultItems.current
    }
 
-   const handleResultBtn = ({
-      key,
-   }: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>) => {
+   const handleResultBtn = (
+      { key }: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>,
+      id?: number
+   ) => {
       const { resultsFocus, results, searchTerm } = searchResults
       const { length: resultsLength } = results
       if (key === 'ArrowDown' || key === 'ArrowUp') {
+         const map = getMap()
+         const targetItem = map.get(id)
+         console.log(targetItem)
          if (resultsLength > 0) {
             setSearchResults((prevResults) => ({
                ...prevResults,
