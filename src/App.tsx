@@ -3,7 +3,7 @@ import { v4 as uuid } from 'uuid'
 import './index.css'
 
 interface ShoppingListItem {
-   id: number
+   id: string
    checked: boolean
    value: string
 }
@@ -20,11 +20,11 @@ type ShoppingListActions =
      }
    | {
         type: 'REMOVE_ITEM'
-        payload: number
+        payload: string
      }
    | {
         type: 'TOGGLE_ITEM'
-        payload: number
+        payload: string
         checked: boolean
      }
 
@@ -94,7 +94,7 @@ const App: FC = () => {
             dispatch({
                type: 'ADD_ITEM',
                payload: {
-                  id: shoppingList.length + 1,
+                  id: uuid(),
                   checked: false,
                   value: searchTerm,
                },
@@ -167,7 +167,7 @@ const App: FC = () => {
                         dispatch({
                            type: 'ADD_ITEM',
                            payload: {
-                              id: shoppingList.length + 1,
+                              id: uuid(),
                               checked: false,
                               value: currentTarget.textContent as string,
                            },
