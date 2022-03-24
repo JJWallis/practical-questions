@@ -89,8 +89,11 @@ const App: FC = () => {
          targetItem?.focus()
          console.log(id, targetItem)
          if (resultsLength > 0) {
+            // BUG:
             // resultsFocus needs to updated depending on where user is
             // check if resultsFocus state num === idx + 1 => addBtnRef focused
+            // https://medium.com/swlh/react-focus-c6ffd4aa42e5
+            // https://meganesulli.com/blog/managing-focus-with-react-and-jest/
             setSearchResults((prevResults) => ({
                ...prevResults,
                resultsFocus:
@@ -100,7 +103,7 @@ const App: FC = () => {
                      ? resultsFocus - 1
                      : resultsLength, // fix upwards bug
             }))
-            console.log(resultsFocus)
+            // console.log(resultsFocus)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
