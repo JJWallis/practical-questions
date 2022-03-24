@@ -70,7 +70,7 @@ const App: FC = () => {
       resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
-   const resultItems = useRef<Map<any, any> | null>(null) // fix any type
+   const resultItems = useRef<Map<number, HTMLButtonElement> | null>(null)
 
    const getMap = () => {
       if (!resultItems.current) resultItems.current = new Map()
@@ -85,9 +85,10 @@ const App: FC = () => {
       const { length: resultsLength } = results
       if (key === 'ArrowDown' || key === 'ArrowUp') {
          const map = getMap()
-         const targetItem = map.get(id)
-         console.log(targetItem)
+         const targetItem = map.get(id as number)
+         console.log(targetItem, id)
          if (resultsLength > 0) {
+            // check if resultsFocus state num === idx + 1 => addBtnRef focused
             setSearchResults((prevResults) => ({
                ...prevResults,
                resultsFocus:
@@ -136,7 +137,7 @@ const App: FC = () => {
             ...prevResults,
             results: [],
             resultsFocus: 0,
-         })) // reset results list so prevResults don't persist
+         }))
       }
    }, [searchResults.searchTerm])
 
@@ -164,13 +165,12 @@ const App: FC = () => {
                   searchTerm: e.target.value,
                })
             }
-            onKeyDown={handleResultBtn}
+            onKeyDown={(e) => handleResultBtn(e, 1)}
          />
          <ol className="results-list">
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
-                     // check if resultsFocus state num === idx + 1 => addBtnRef focused
                      ref={(node) => {
                         const map = getMap()
                         const key = idx + 1
@@ -180,7 +180,9 @@ const App: FC = () => {
                            map.delete(key)
                         }
                      }}
-                     onKeyDown={handleResultBtn}
+                     onKeyDown={
+                        (e) => handleResultBtn(e, idx + 1) // may never change => + 2 instead?
+                     }
                      onClick={({ currentTarget }) => {
                         dispatch({
                            type: 'ADD_ITEM',
