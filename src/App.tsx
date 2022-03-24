@@ -82,11 +82,12 @@ const App: FC = () => {
                ...prevResults,
                resultsFocus:
                   key === 'ArrowDown' && resultsFocus < resultsLength
-                     ? +1
+                     ? resultsFocus + 1
                      : key === 'ArrowUp' && resultsFocus > 0
-                     ? -1
-                     : 0, // could be a problem - should never occur
+                     ? resultsFocus - 1
+                     : resultsLength,
             }))
+            console.log(key, resultsFocus)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
