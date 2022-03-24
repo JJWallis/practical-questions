@@ -70,6 +70,12 @@ const App: FC = () => {
       resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
+   const resultItems = useRef<Map<any, any> | null>(null)
+
+   const getMap = () => {
+      if (!resultItems.current) resultItems.current = new Map()
+      return resultItems.current
+   }
 
    const handleResultBtn = ({
       key,
@@ -85,9 +91,9 @@ const App: FC = () => {
                      ? resultsFocus + 1
                      : key === 'ArrowUp' && resultsFocus > 0
                      ? resultsFocus - 1
-                     : resultsLength,
+                     : resultsLength, // fix upwards bug
             }))
-            console.log(key, resultsFocus)
+            // console.log(key, resultsFocus)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
@@ -161,7 +167,6 @@ const App: FC = () => {
                <li key={uuid()}>
                   <button
                      // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused)
-                     // https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
                      onKeyDown={handleResultBtn}
                      onClick={({ currentTarget }) => {
                         dispatch({
