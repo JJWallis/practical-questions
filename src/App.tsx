@@ -70,7 +70,7 @@ const App: FC = () => {
       resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
-   const resultItems = useRef<Map<any, any> | null>(null)
+   const resultItems = useRef<Map<any, any> | null>(null) // fix any type
 
    const getMap = () => {
       if (!resultItems.current) resultItems.current = new Map()
@@ -166,7 +166,16 @@ const App: FC = () => {
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
-                     // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused)
+                     // check if resultsFocus state num === idx + 1 => addBtnRef focused
+                     ref={(node) => {
+                        const map = getMap()
+                        const key = idx + 1
+                        if (node) {
+                           map.set(key, node)
+                        } else {
+                           map.delete(key)
+                        }
+                     }}
                      onKeyDown={handleResultBtn}
                      onClick={({ currentTarget }) => {
                         dispatch({
