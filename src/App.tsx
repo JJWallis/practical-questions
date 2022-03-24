@@ -67,7 +67,7 @@ const App: FC = () => {
    const [searchResults, setSearchResults] = useState<SearchResults>({
       searchTerm: '',
       results: [],
-      resultsFocus: 0,
+      resultsFocus: 1,
    })
    const searchRef = useRef<HTMLInputElement>(null)
    const resultItems = useRef<Map<number, HTMLButtonElement> | null>(null)
@@ -89,6 +89,7 @@ const App: FC = () => {
          targetItem?.focus()
          console.log(id, targetItem)
          if (resultsLength > 0) {
+            // resultsFocus needs to updated depending on where user is
             // check if resultsFocus state num === idx + 1 => addBtnRef focused
             setSearchResults((prevResults) => ({
                ...prevResults,
@@ -99,7 +100,7 @@ const App: FC = () => {
                      ? resultsFocus - 1
                      : resultsLength, // fix upwards bug
             }))
-            // console.log(key, resultsFocus)
+            console.log(resultsFocus)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
