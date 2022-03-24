@@ -9,7 +9,7 @@ interface ShoppingListItem {
 }
 interface SearchResults {
    searchTerm: string
-   results: string[] | null
+   results: string[]
    resultsFocus: number
 }
 type ShoppingList = ShoppingListItem[] | []
@@ -66,22 +66,22 @@ const App: FC = () => {
    )
    const [searchResults, setSearchResults] = useState<SearchResults>({
       searchTerm: '',
-      results: null,
+      results: [],
       resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
 
-   const handleResultBtnFocus = (
+   const handleResultBtn = (
       e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>
    ) => {
+      const { resultsFocus, results, searchTerm } = searchResults
+      const { length: resultsLength } = results
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-         const { resultsFocus, results } = searchResults
-         const { length } = results as string[]
-         if (length > 0) {
+         if (resultsLength > 0) {
             setSearchResults((prevResults) => ({
                ...prevResults,
                resultsFocus:
-                  e.key === 'ArrowDown' && resultsFocus < length
+                  e.key === 'ArrowDown' && resultsFocus < resultsLength
                      ? +1
                      : e.key === 'ArrowUp' && resultsFocus > 0
                      ? -1
@@ -89,10 +89,8 @@ const App: FC = () => {
             }))
          }
       }
-      if (e.key === 'Enter') {
-         const { results, searchTerm } = searchResults
-         const { length } = results as string[]
-         if (!length || length === 1)
+      if (e.key === 'Enter' && searchResults.searchTerm) {
+         if (!resultsLength || resultsLength === 1)
             dispatch({
                type: 'ADD_ITEM',
                payload: {
@@ -101,8 +99,8 @@ const App: FC = () => {
                   value: searchTerm,
                },
             })
-         searchRef.current?.focus()
       }
+      searchRef.current?.focus()
    }
 
    useEffect(() => {
@@ -126,7 +124,7 @@ const App: FC = () => {
       } else {
          setSearchResults((prevResults) => ({
             ...prevResults,
-            results: null,
+            results: [],
             resultsFocus: 0,
          }))
       }
@@ -156,7 +154,7 @@ const App: FC = () => {
                   searchTerm: e.target.value,
                })
             }
-            onKeyDown={handleResultBtnFocus}
+            onKeyDown={handleResultBtn}
          />
          <ol className="results-list">
             {searchResults.results?.map((result, idx) => (
@@ -164,7 +162,7 @@ const App: FC = () => {
                   <button
                      // addBtnRef + map() = check if resultsFocus state num === idx + 1 (addBtnRef focused
                      // https://beta.reactjs.org/learn/manipulating-the-dom-with-refs)
-                     onKeyDown={handleResultBtnFocus}
+                     onKeyDown={handleResultBtn}
                      onClick={({ currentTarget }) => {
                         dispatch({
                            type: 'ADD_ITEM',
