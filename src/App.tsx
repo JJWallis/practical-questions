@@ -68,7 +68,7 @@ const App: FC = () => {
    const [searchResults, setSearchResults] = useState<SearchResults>({
       searchTerm: '',
       results: [],
-      resultsFocus: 1,
+      resultsFocus: 0,
    })
    const searchRef = useRef<HTMLInputElement>(null)
    const resultItems = useRef<Map<number, HTMLButtonElement> | null>(null)
@@ -85,16 +85,17 @@ const App: FC = () => {
       const { resultsFocus, results, searchTerm } = searchResults
       const { length: resultsLength } = results
       if (key === 'ArrowDown' || key === 'ArrowUp') {
-         const map = getMap()
-         const targetItem = map.get(id as number) // could use resultsFocus to access vs id
-         targetItem?.focus()
-         console.log(id, targetItem)
          if (resultsLength > 0) {
             // BUG:
-            // resultsFocus needs to updated depending on where user is
+            // resultsFocus needs to be updated depending on where user is
             // check if resultsFocus state num === idx + 1 => addBtnRef focused
             // https://medium.com/swlh/react-focus-c6ffd4aa42e5
             // https://meganesulli.com/blog/managing-focus-with-react-and-jest/
+
+            const map = getMap()
+            const targetItem = map.get(id as number) // could use resultsFocus to access vs id
+            targetItem?.focus()
+            console.log(id, targetItem)
             setSearchResults((prevResults) => ({
                ...prevResults,
                resultsFocus:
@@ -146,7 +147,7 @@ const App: FC = () => {
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: [],
-            resultsFocus: 1,
+            resultsFocus: 0,
          }))
       }
    }, [searchResults.searchTerm])
@@ -183,7 +184,7 @@ const App: FC = () => {
                   <button
                      ref={(node) => {
                         const map = getMap()
-                        const key = idx + 1
+                        const key = idx
                         if (node) {
                            map.set(key, node)
                         } else {
