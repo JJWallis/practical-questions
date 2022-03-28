@@ -180,6 +180,7 @@ const App: FC = () => {
             {searchResults.results?.map((result, idx) => (
                <li key={uuid()}>
                   <button
+                     aria-label="Add to shopping list"
                      ref={(node) => {
                         const map = getMap()
                         const key = idx
@@ -210,7 +211,7 @@ const App: FC = () => {
                   <div>
                      <input
                         type="checkbox"
-                        aria-label="toggle food item"
+                        aria-label={`toggle ${value} item`}
                         checked={checked}
                         onChange={(e) =>
                            dispatch({
@@ -229,7 +230,7 @@ const App: FC = () => {
                      </span>
                   </div>
                   <button
-                     aria-label="remove food item"
+                     aria-label={`remove ${value} item`}
                      onClick={() =>
                         dispatch({ type: 'REMOVE_ITEM', payload: id })
                      }
