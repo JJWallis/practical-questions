@@ -76,22 +76,32 @@ const App: FC = () => {
       return resultItems.current
    }
 
-   const handleResultBtn = (
+   const focusResultBtn = (
       { key }: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>,
+      id: number
+   ) => {
+      const {
+         results: { length: resultsLength },
+      } = searchResults
+      if (key === 'ArrowDown' || key === 'ArrowUp') {
+         if (resultsLength > 0) {
+            const idx = (id as number) + (key === 'ArrowDown' ? 1 : -1)
+            const map = getMap()
+            const targetItem = map.get(idx)
+            targetItem?.focus()
+            // console.log(idx, targetItem)
+         }
+      }
+   }
+
+   const handleResultBtn = (
+      e: React.KeyboardEvent<HTMLButtonElement | HTMLInputElement>,
       id?: number
    ) => {
       const { results, searchTerm } = searchResults
       const { length: resultsLength } = results
-      if (key === 'ArrowDown' || key === 'ArrowUp') {
-         if (resultsLength > 0 && id !== undefined) {
-            const idx = id + (key === 'ArrowDown' ? 1 : -1)
-            const map = getMap()
-            const targetItem = map.get(idx)
-            targetItem?.focus()
-            console.log(idx, targetItem)
-         }
-      }
-      if (key === 'Enter' && searchResults.searchTerm) {
+      focusResultBtn(e, id as number)
+      if (e.key === 'Enter' && searchResults.searchTerm) {
          if (!resultsLength || resultsLength === 1)
             dispatch({
                type: 'ADD_ITEM',
