@@ -88,12 +88,12 @@ const App: FC = () => {
          if (resultsLength > 0) {
             // BUG:
             // resultsFocus needs to be updated depending on where user is
-            // check if resultsFocus state num === idx + 1 => addBtnRef focused
+            // check if resultsFocus === idx => addBtnRef focused
             // https://medium.com/swlh/react-focus-c6ffd4aa42e5
             // https://meganesulli.com/blog/managing-focus-with-react-and-jest/
 
             const map = getMap()
-            const targetItem = map.get(id as number) // could use resultsFocus to access vs id
+            const targetItem = map.get(id as number)
             targetItem?.focus()
             console.log(id, targetItem)
             setSearchResults((prevResults) => ({
@@ -103,7 +103,7 @@ const App: FC = () => {
                      ? resultsFocus + 1
                      : key === 'ArrowUp' && resultsFocus > 0
                      ? resultsFocus - 1
-                     : resultsLength, // fix upwards bug
+                     : resultsFocus,
             }))
          }
       }
