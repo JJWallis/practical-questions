@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useReducer, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FunctionTypeNode } from 'typescript'
 import { v4 as uuid } from 'uuid'
 import './index.css'
 
@@ -114,11 +115,11 @@ const App: FC = () => {
       }
    }
 
-   const debounce = (fn: any, timeout = 500) => {
+   const debounce = (fn: () => Promise<void>, timeout = 500) => {
       let timer: NodeJS.Timeout
-      return (...args: any) => {
+      return () => {
          clearTimeout(timer)
-         timer = setTimeout(() => fn(...args), timeout)
+         timer = setTimeout(() => fn(), timeout)
          return timer
       }
    }
