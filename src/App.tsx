@@ -70,6 +70,7 @@ const App: FC = () => {
    })
    const searchRef = useRef<HTMLInputElement>(null)
    const resultItems = useRef<Map<number, HTMLButtonElement> | null>(null)
+   const timerRef = useRef<NodeJS.Timeout | null>(null)
 
    const getMap = () => {
       if (!resultItems.current) resultItems.current = new Map()
@@ -118,10 +119,9 @@ const App: FC = () => {
       return (...args: any) => {
          clearTimeout(timer)
          timer = setTimeout(() => fn(...args), timeout)
+         return timer
       }
    }
-
-   const test = debounce(() => console.log('hello world'))
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
@@ -140,8 +140,9 @@ const App: FC = () => {
                console.error(error.message)
             }
          }
-         fetchResults()
+         timerRef.current = debounce(() => fetchResults())()
       } else {
+         if (timerRef.current) clearTimeout(timerRef.current)
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: [],
