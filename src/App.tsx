@@ -113,7 +113,30 @@ const App: FC = () => {
       }
    }
 
-   const debouncedSearch = () => {}
+   // const debounce = (fn: any, timeout = 500) => {
+   //    let timer: NodeJS.Timeout
+   //    return (...args: any) => {
+   //       clearTimeout(timer)
+   //       timer = setTimeout(() => fn(...args), timeout)
+   //    }
+   // }
+
+   // function debounce(func: any, timeout = 300) {
+   //    let timer: NodeJS.Timeout
+   //    return (...args: any) => {
+   //       clearTimeout(timer)
+   //       timer = setTimeout(() => {
+   //          func.apply(args)
+   //       }, timeout)
+   //    }
+   // }
+   // function saveInput() {
+   //    console.log('Saving data')
+   // }
+   // const processChange = debounce(() => saveInput())
+   // processChange()
+
+   debounce(() => console.log('hello world'))
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
