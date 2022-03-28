@@ -1,14 +1,16 @@
 import React from 'react'
 
 function flipAndInvertImage(image: number[][]): number[][] {
-   return image.reverse()
+   return image.map((numArr) =>
+      numArr.reverse().map((num) => (num === 0 ? 1 : 0))
+   )
 }
 
 console.log(
    flipAndInvertImage([
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      [1, 1, 0],
+      [1, 0, 1],
+      [0, 0, 0],
    ])
 )
 
