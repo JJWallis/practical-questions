@@ -89,7 +89,6 @@ const App: FC = () => {
             const map = getMap()
             const targetItem = map.get(idx)
             targetItem?.focus()
-            // console.log(idx, targetItem)
          }
       }
    }
@@ -113,6 +112,8 @@ const App: FC = () => {
             })
       }
    }
+
+   const debouncedSearch = () => {}
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
