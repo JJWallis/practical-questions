@@ -83,16 +83,12 @@ const App: FC = () => {
       const { results, searchTerm } = searchResults
       const { length: resultsLength } = results
       if (key === 'ArrowDown' || key === 'ArrowUp') {
-         if (resultsLength > 0) {
-            // BUG:
-            // && id !== undefined && id < resultsLength - 1)
-            // https://medium.com/swlh/react-focus-c6ffd4aa42e5
-            // https://meganesulli.com/blog/managing-focus-with-react-and-jest/
-
+         if (resultsLength > 0 && id !== undefined) {
+            const idx = id + (key === 'ArrowDown' ? 1 : -1)
             const map = getMap()
-            const targetItem = map.get(id as number)
+            const targetItem = map.get(idx)
             targetItem?.focus()
-            console.log(id, targetItem)
+            console.log(idx, targetItem)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
@@ -158,7 +154,7 @@ const App: FC = () => {
                   searchTerm: e.target.value,
                })
             }
-            onKeyDown={(e) => handleResultBtn(e, 0)}
+            onKeyDown={(e) => handleResultBtn(e, -1)}
          />
          <ol className="results-list">
             {searchResults.results?.map((result, idx) => (
@@ -180,7 +176,6 @@ const App: FC = () => {
                               value: currentTarget.textContent as string,
                            },
                         })
-                        searchRef.current?.focus()
                      }}
                   >
                      {result}
