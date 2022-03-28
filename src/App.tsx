@@ -104,7 +104,6 @@ const App: FC = () => {
                      ? resultsFocus - 1
                      : resultsLength, // fix upwards bug
             }))
-            // console.log(resultsFocus)
          }
       }
       if (key === 'Enter' && searchResults.searchTerm) {
@@ -119,6 +118,11 @@ const App: FC = () => {
             })
       }
    }
+
+   useEffect(
+      () => console.log(searchResults.resultsFocus),
+      [searchResults.resultsFocus]
+   )
 
    useEffect(() => {
       if (searchResults.searchTerm.length >= 2) {
@@ -142,7 +146,7 @@ const App: FC = () => {
          setSearchResults((prevResults) => ({
             ...prevResults,
             results: [],
-            resultsFocus: 0,
+            resultsFocus: 1,
          }))
       }
    }, [searchResults.searchTerm])
