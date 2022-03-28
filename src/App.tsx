@@ -86,7 +86,7 @@ const App: FC = () => {
       const { length: resultsLength } = results
       if (key === 'ArrowDown' || key === 'ArrowUp') {
          const map = getMap()
-         const targetItem = map.get(id as number)
+         const targetItem = map.get(id as number) // could use resultsFocus to access vs id
          targetItem?.focus()
          console.log(id, targetItem)
          if (resultsLength > 0) {
