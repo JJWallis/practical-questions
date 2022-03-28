@@ -1,18 +1,10 @@
 import React from 'react'
 
-function flipAndInvertImage(image: number[][]): number[][] {
-   return image.map((numArr) =>
-      numArr.reverse().map((num) => (num === 0 ? 1 : 0))
-   )
+function firstPalindrome(words: string[]): string {
+   return ''
 }
 
-console.log(
-   flipAndInvertImage([
-      [1, 1, 0],
-      [1, 0, 1],
-      [0, 0, 0],
-   ])
-)
+console.log(firstPalindrome(['abc', 'abcba', 'abcd', 'cba']))
 
 const About: React.FC = () => {
    return <></>
