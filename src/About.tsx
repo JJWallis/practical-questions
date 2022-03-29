@@ -21,6 +21,10 @@
 //       timerRef.current = timerId
 //    }
 
+//    // React.useEffect(() => setupTimer(), []);
+//    React.useEffect(() => setDate(grabTime()), [time])
+//    console.log(seconds, minutes, hours)
+
 //    //   intermediary function to perform maths - desired date prop / total * circumference
 
 //    return (
