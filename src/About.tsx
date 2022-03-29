@@ -1,11 +1,15 @@
-// import React from 'react'
+// const grabTime = () => new Date()
 
 // const App = () => {
+//    const [date, setDate] = React.useState(() => grabTime())
+//    //   destructure our desired date props - pass these to style obj of hands
+//    //   intermediary function to perform maths - desired date prop / total * circumference
+
 //    return (
 //       <article aria-label="clock" className="clock">
-//          <div className="hour-hand hand"></div>
-//          <div className="minute-hand hand"></div>
-//          <div className="second-hand hand"></div>
+//          <div className="hours-hand hand" aria-label="hours-hand"></div>
+//          <div className="minutes-hand hand" aria-label="hours-hand"></div>
+//          <div className="seconds-hand hand" aria-label="hours-hand"></div>
 //       </article>
 //    )
 // }
