@@ -1,8 +1,26 @@
-// const grabTime = () => new Date()
+// const grabTime = () => {
+//    const currDate = new Date()
+//    const seconds = currDate.getSeconds()
+//    const minutes = currDate.getMinutes()
+//    const hours = currDate.getHours()
+//    return { seconds, minutes, hours }
+// }
 
 // const App = () => {
-//    const [date, setDate] = React.useState(() => grabTime())
-//    //   destructure our desired date props - pass these to style obj of hands
+//    const [{ seconds, minutes, hours }, setDate] = React.useState(() =>
+//       grabTime()
+//    )
+//    const [time, setTime] = React.useState(0)
+//    const timerRef = React.useRef(null)
+
+//    const setupTimer = () => {
+//       const timerId = setInterval(
+//          () => setTime((prevTime) => prevTime + 1),
+//          1000
+//       )
+//       timerRef.current = timerId
+//    }
+
 //    //   intermediary function to perform maths - desired date prop / total * circumference
 
 //    return (
