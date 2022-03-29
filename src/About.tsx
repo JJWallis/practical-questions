@@ -1,3 +1,11 @@
+import React from 'react'
+
+const About = () => {
+   return <></>
+}
+
+export default About
+
 // const grabTime = () => {
 //    const currDate = new Date()
 //    const seconds = currDate.getSeconds()
