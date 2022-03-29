@@ -12,6 +12,7 @@
 //    )
 //    const [time, setTime] = React.useState(0)
 //    const timerRef = React.useRef(null)
+//    const circumference = 2 * Math.PI * 170
 
 //    const setupTimer = () => {
 //       const timerId = setInterval(
@@ -21,49 +22,64 @@
 //       timerRef.current = timerId
 //    }
 
-//    // React.useEffect(() => setupTimer(), []);
+//    React.useEffect(() => setupTimer(), [])
 //    React.useEffect(() => setDate(grabTime()), [time])
-//    console.log(seconds, minutes, hours)
-
-//    //   intermediary function to perform maths - desired date prop / total * circumference
 
 //    return (
 //       <article aria-label="clock" className="clock">
-//          <div className="hours-hand hand" aria-label="hours-hand"></div>
-//          <div className="minutes-hand hand" aria-label="hours-hand"></div>
-//          <div className="seconds-hand hand" aria-label="hours-hand"></div>
+//          <div
+//             className="hours-hand hand"
+//             aria-label="hours-hand"
+//             style={{
+//                transform: `rotate(${(hours / 60) * circumference}deg)`,
+//             }}
+//          ></div>
+//          <div
+//             className="minutes-hand hand"
+//             aria-label="hours-hand"
+//             style={{
+//                transform: `rotate(${(minutes / 60) * circumference}deg)`,
+//             }}
+//          ></div>
+//          <div
+//             className="seconds-hand hand"
+//             aria-label="hours-hand"
+//             style={{
+//                transform: `rotate(${(seconds / 120) * circumference}deg)`,
+//             }}
+//          ></div>
 //       </article>
 //    )
 // }
 
 // ReactDOM.render(<App />, document.getElementById('app'))
 
-// // *,
-// // *::before,
-// // *::after {
-// //   box-sizing: border-box;
-// // }
+// // // *,
+// // // *::before,
+// // // *::after {
+// // //   box-sizing: border-box;
+// // // }
 
-// // body {
-// //   display: grid;
-// //   place-content: center;
-// //   min-height: 100vh;
-// //   margin: 0;
-// //   padding: 0;
-// // }
+// // // body {
+// // //   display: grid;
+// // //   place-content: center;
+// // //   min-height: 100vh;
+// // //   margin: 0;
+// // //   padding: 0;
+// // // }
 
-// // .clock {
-// //   position: relative;
-// //   border: 1px solid black;
-// //   width: 350px;
-// //   height: 350px;
-// //   border-radius: 50%;
-// // }
+// // // .clock {
+// // //   position: relative;
+// // //   border: 1px solid black;
+// // //   width: 350px;
+// // //   height: 350px;
+// // //   border-radius: 50%;
+// // // }
 
-// // .hand {
-// //   position: absolute;
-// //   top: 0;
-// //   right: 50%;
-// //   height: 50%;
-// //   border: 1px solid black;
-// // }
+// // // .hand {
+// // //   position: absolute;
+// // //   top: 0;
+// // //   right: 50%;
+// // //   height: 50%;
+// // //   border: 1px solid black;
+// // // }
