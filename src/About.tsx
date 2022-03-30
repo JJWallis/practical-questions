@@ -1,19 +1,6 @@
 import React from 'react'
 
 const About = () => {
-   function arrayPairSum(nums: number[]): number {
-      const sorted = nums.sort()
-      const results: number[] = []
-      let j = 1
-      for (let i = 0; j < sorted.length; i += 2) {
-         results.push(Math.min(sorted[i], sorted[j]))
-         j += 2
-      }
-      return results.reduce((acc, curr) => acc + curr, 0)
-   }
-
-   console.log(arrayPairSum([6, 2, 6, 5, 1, 2])) // 9
-
    return <></>
 }
 
@@ -43,30 +30,42 @@ export default About
 //       timerRef.current = timerId
 //    }
 
-//    React.useEffect(() => setupTimer(), [])
+//    const produceHours = () => {
+//       const hours = []
+//       for (let i = 0; i <= 12; i++)
+//          hours.push(
+//             <span style={{}} className="hour" aria-label={`${i} hour`}>
+//                {i}
+//             </span>
+//          )
+//       return hours
+//    }
+
+//    // React.useEffect(() => setupTimer(), []);
 //    React.useEffect(() => setDate(grabTime()), [time])
 
 //    return (
 //       <article aria-label="clock" className="clock">
+//          {produceHours()}
 //          <div
 //             className="hours-hand hand"
 //             aria-label="hours-hand"
 //             style={{
-//                transform: `rotate(${(hours / 60) * circumference}deg)`,
+//                transform: `rotate(${(hours / 12) * 360}deg)`,
 //             }}
 //          ></div>
 //          <div
 //             className="minutes-hand hand"
 //             aria-label="hours-hand"
 //             style={{
-//                transform: `rotate(${(minutes / 60) * circumference}deg)`,
+//                transform: `rotate(${(minutes / 60) * 360}deg)`,
 //             }}
 //          ></div>
 //          <div
 //             className="seconds-hand hand"
 //             aria-label="hours-hand"
 //             style={{
-//                transform: `rotate(${(seconds / 120) * circumference}deg)`,
+//                transform: `rotate(${(seconds / 60) * 360}deg)`,
 //             }}
 //          ></div>
 //       </article>
@@ -74,33 +73,3 @@ export default About
 // }
 
 // ReactDOM.render(<App />, document.getElementById('app'))
-
-// // // *,
-// // // *::before,
-// // // *::after {
-// // //   box-sizing: border-box;
-// // // }
-
-// // // body {
-// // //   display: grid;
-// // //   place-content: center;
-// // //   min-height: 100vh;
-// // //   margin: 0;
-// // //   padding: 0;
-// // // }
-
-// // // .clock {
-// // //   position: relative;
-// // //   border: 1px solid black;
-// // //   width: 350px;
-// // //   height: 350px;
-// // //   border-radius: 50%;
-// // // }
-
-// // // .hand {
-// // //   position: absolute;
-// // //   top: 0;
-// // //   right: 50%;
-// // //   height: 50%;
-// // //   border: 1px solid black;
-// // // }
