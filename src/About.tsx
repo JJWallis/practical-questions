@@ -2,7 +2,10 @@ import React from 'react'
 
 const About = () => {
    function sortArrayByParity(nums: number[]): number[] {
-      return []
+      const even: number[] = []
+      const odd: number[] = []
+      nums.forEach((num) => (num % 2 === 0 ? even.push(num) : odd.push(num)))
+      return even.concat(odd)
    }
 
    console.log(sortArrayByParity([3, 1, 2, 4]))
