@@ -3,13 +3,13 @@ import React from 'react'
 const About = () => {
    function arrayPairSum(nums: number[]): number {
       const sorted = nums.sort()
-      const results: number[][] = []
+      const results: number[] = []
       let j = 1
       for (let i = 0; j < sorted.length; i += 2) {
-         results.push([sorted[i], sorted[j]])
+         results.push(Math.min(sorted[i], sorted[j]))
          j += 2
       }
-      return results.reduce((acc, curr) => acc + Math.min(...curr), 0)
+      return results.reduce((acc, curr) => acc + curr, 0)
    }
 
    console.log(arrayPairSum([6, 2, 6, 5, 1, 2])) // 9
