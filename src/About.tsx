@@ -3,9 +3,10 @@ import React from 'react'
 const About = () => {
    function sortArrayByParity(nums: number[]): number[] {
       const results: number[] = []
-      nums.forEach((num) =>
-         num % 2 === 0 ? results.unshift(num) : results.push(num)
-      )
+
+      let j = nums.length - 1
+      for (let i = 0; i < nums.length; i++) {}
+
       return results
    }
 
