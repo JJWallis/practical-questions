@@ -3,7 +3,15 @@ import React from 'react'
 const About = () => {
    function arrayPairSum(nums: number[]): number {
       const sorted = nums.sort()
-      console.log(sorted)
+      const results: number[] = []
+
+      let j = 1
+      // for (let i = 0; i < sorted.length; i + 2) {
+      //    j += 2
+      // }
+
+      console.log(sorted.length)
+
       // reduce return = acc + Math.min(forEachArrPairing)
       return 0
    }
