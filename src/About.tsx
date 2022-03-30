@@ -32,17 +32,20 @@ export default About
 
 //   const produceHours = () => {
 //     const hours = [];
-//     for (let i = 0; i <= 12; i++)
+//     for (let i = 1; i <= 12; i++)
 //       hours.push(
 //         <span
-//           style={{ transform: `translate(${(i / 12) * 360}px)` }}
+//           style={{
+//             transform: `translate(${(i / 12) * 360}px, ${(i / 12) * 360}px)`
+//           }}
 //           className="hour"
 //           aria-label={`${i} hour`}
 //         >
 //           {i}
 //         </span>
 //       );
-//     return hours;
+//     console.log(hours.reverse());
+//     return hours.reverse();
 //   };
 
 //   // React.useEffect(() => setupTimer(), []);
@@ -50,7 +53,8 @@ export default About
 
 //   return (
 //     <article aria-label="clock" className="clock">
-//       {produceHours()}
+//       <div className="straight"></div>
+//       <div className="ninety"></div>
 //       <div
 //         className="hours-hand hand"
 //         aria-label="hours-hand"
