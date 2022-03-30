@@ -1,6 +1,12 @@
 import React from 'react'
 
 const About = () => {
+   function sortArrayByParity(nums: number[]): number[] {
+      return []
+   }
+
+   console.log(sortArrayByParity([3, 1, 2, 4]))
+
    return <></>
 }
 
