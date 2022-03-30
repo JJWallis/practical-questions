@@ -2,13 +2,14 @@ import React from 'react'
 
 const About = () => {
    function sortArrayByParity(nums: number[]): number[] {
-      const even: number[] = []
-      const odd: number[] = []
-      nums.forEach((num) => (num % 2 === 0 ? even.push(num) : odd.push(num)))
-      return even.concat(odd)
+      const results: number[] = []
+      nums.forEach((num) =>
+         num % 2 === 0 ? results.unshift(num) : results.push(num)
+      )
+      return results
    }
 
-   console.log(sortArrayByParity([3, 1, 2, 4]))
+   console.log(sortArrayByParity([3, 1, 2, 4])) // [2, 4, 3, 1]
 
    return <></>
 }
