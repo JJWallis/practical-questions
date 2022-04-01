@@ -12,6 +12,33 @@ All the challenges are being sourced from [Frontendeval](https://frontendeval.co
 
 This challenge required me to build an analogue clock which consisted of building the working hands for the hours, minutes and seconds inside a circular clock face. I wrote a function that would retrieve a new instance of the date object and placed the relevant properties inside an object into local state. I then created a timer with `setInterval()` that would run every second inside a `useEffect()` hook. Passing the stateful variables down to the JSX beneath allowed me to create a new hand for each using a blank div. Each hand was positioned absolute to the relatively positioned clock face with a `right: 50%` position offset to keep it centered. I further applied a `transform-origin: center` to ensure they rotated from the centre point. To rotate each hand by the correct degree and angle, I divided the amount of hours by 12 and minutes/seconds by 60 and multiplied the returned value by 360, the total number of degrees in a circle. To add each hour number around the face I had to create each multiple new lines where the numbers would be positioned at either end, with two centrally facing 90 degree alongside four more facing at 30, 60, 120 and 150 degrees accordingly.
 
+```jsx
+const grabTime = () => {
+   const currDate = new Date()
+   const seconds = currDate.getSeconds()
+   const minutes = currDate.getMinutes()
+   const hours = currDate.getHours()
+   return { seconds, minutes, hours }
+}
+
+const produceHours = () => {
+   const hours = []
+   for (let i = 1; i <= 12; i++)
+      hours.push(
+         <span
+            style={{
+               transform: `translate(${(i / 12) * 360}px, ${(i / 12) * 360}px)`,
+            }}
+            className="hour"
+            aria-label={`${i} hour`}
+         >
+            {i}
+         </span>
+      )
+   return hours.reverse()
+}
+```
+
 ### Multi-step Form
 
 [Task](https://frontendeval.com/questions/multi-step-form)
