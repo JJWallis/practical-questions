@@ -30,6 +30,12 @@ Desc
 
 [Link](https://frontendeval.com/questions/modal-overlay)
 
+### Data Fetching and Visualization
+
+Desc
+
+[Link](https://frontendeval.com/questions/data-fetching)
+
 ### Useful resources
 
 -  [Analogue Clock](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) = This resource helped me with the mathematical formula needed to determine the degree by which each hand should correctly rotate.
