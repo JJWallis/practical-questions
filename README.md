@@ -18,11 +18,29 @@ This challenge required me to build an analogue clock which consisted of buildin
 
 For this challenge I was tasked with coding out a multi-step form that was handled on the same page, meaning I had to conditionally render the type of input, label and buttons allowing users to navigate forwards or backwards through the submission process. The most difficult aspect of this challenge was storing the data in state and preserving that data between each render so that the correct value would match with the current input being rendered. I achieved this by organising my state inside an array of objects and selected the desired value prop in each object with a separate number state variable. This number would increment and decrement between 0 and the arrays length to keep the user's input in sync with the correct object of data. On reflection, I now realise it would have been cleaner to store this number inside the form state itself after all objects to achieve a more minimal representation of state. The back button was also rendered based on whether the current active input number was greater than zero, and the next button would become a submit button when the number reached one less than the length of the form state array (the last index position).
 
+```jsx
+const initialState = [
+   { name: 'name', value: '' },
+   { name: 'email', value: '' },
+   { name: 'date', value: '' },
+   { name: 'password', value: '' },
+]
+
+return (
+   <>
+      <button hidden={!current} onClick={() => setCurrent((prev) => prev - 1)}>
+         &larr; Back
+      </button>
+      ...
+   </>
+)
+```
+
 ### Shopping List
 
 [Task](https://frontendeval.com/questions/shopping-list)
 
-This was a classic challenge which used all the useful logic that I learnt when writing my first TODO list app in React. The shopping list was essentially a todo list allowing users to add items, check them off and remove them at will. I chose to model each shopping list item as an object inside a parent array in state, using a reducer to type out all possible actions and to update state in a declarative whilst strict manner. The search input was also debounced to make an API request when the user had stopped typing instead of every key stroke which would be horrendous for long-term performance. This was my first time implementing a debounce function which acts a higher order function to return a new one that calls our targeted function only when the timer it sets up finishes, yet every time that function gets called it will reset the timer again. Finally, I utilised the `filter()` method to return an array of matched properties based on the user's input which would be displayed as full-width buttons to (increasing mobile touch targets) in a separate ordered list underneath the search field itself.
+This was a classic challenge which used all the useful logic that I learnt when writing my first TODO list app in React. The shopping list was essentially a todo list allowing users to add items, check them off and remove them at will. I chose to model each shopping list item as an object inside a parent array in state, using a reducer to type out all possible actions and to update state in a declarative whilst strict manner. The search input was also debounced to make an API request when the user had stopped typing instead of every key stroke which would be horrendous for long-term performance. This was my first time implementing a debounce function which acts a higher order function to return a new one that calls our targeted function only when the timer it sets up finishes, yet every time that function gets called it will reset the timer again. Finally, I utilised the `filter()` method to return an array of matched properties based on the user's input which would be displayed as full-width buttons to (increasing mobile touch targets) in a separate ordered list underneath the search field itself. In order to allow users to focus between each option using the arrow keys, I had to create a new `map()` stored on a ref and invoke it inside the render method to dynamically assign a new ref to each option which could then be individually focused.
 
 ### Modal Overlay
 
