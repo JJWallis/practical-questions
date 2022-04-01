@@ -28,7 +28,7 @@ This was a classic challenge which used all the useful logic that I learnt when 
 
 [Task](https://frontendeval.com/questions/modal-overlay)
 
-The purpose of this challenge was to create a dismissible modal overlay where the UI would initially show a 'Show offer' button which, when clicked, would display the modal window alongside a transparent grey overlay in the background.
+The purpose of this challenge was to create a dismissible modal overlay where the UI would initially show a 'Show offer' button which, when clicked, would display the modal window alongside a transparent grey overlay in the background. I chose to conditionally render the modal window as a component based on when the 'Show offer' button was clicked, since the next the part of this challenge required me to have multiple offers/modals available at the same time. As a result, rendering the same modal component and passing the offer through via props allowed me to populate the window with dynamic information instead of having to render two separate modal windows. The offers were being stored in state as an object, and would be conditionally reset based on whether the user would click the close button. Finally, I implemented a `clickOutside()` function invoked in a `useEffect()` that would setup a native click event on the document to check if where the user had clicked was a descandant element of the modal window itself. This comparison was made by storing the modal's referential identity on a `useRef()` hook.
 
 ### Data Fetching and Visualization
 
