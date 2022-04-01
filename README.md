@@ -32,7 +32,7 @@ The purpose of this challenge was to create a dismissible modal overlay where th
 
 ### Data Fetching and Visualization
 
-Desc
+This challenge involed retrieving a list of numbers from an endpoint and then ploting those as a histogram showing the frequency of each number in the list. I first removed all duplicates from the returned array and sorted them in order to produce the row numbers underneath each bar on the graph. I used `display: grid` on both the graph and row container underneath to match the column numbers and their widths. The row container was `position: absolute` and relative to the graph itself with a `width: 100%` to scale in relation to the graph's size.
 
 [Link](https://frontendeval.com/questions/data-fetching)
 
