@@ -26,9 +26,9 @@ This was a classic challenge which used all the useful logic that I learnt when 
 
 ### Modal Overlay
 
-Desc
+[Task](https://frontendeval.com/questions/modal-overlay)
 
-[Link](https://frontendeval.com/questions/modal-overlay)
+The purpose of this challenge was to create a dismissible modal overlay where the UI would initially show a 'Show offer' button which, when clicked, would display the modal window alongside a transparent grey overlay in the background.
 
 ### Data Fetching and Visualization
 
