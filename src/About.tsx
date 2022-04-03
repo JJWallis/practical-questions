@@ -27,10 +27,23 @@ const About = () => {
       if (key === 'Enter') {
          const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
-         const results = []
-         console.log(wordToGuess, userGuess)
-         // map through word to guess arr
-         // return obj with letter as prop + color string as value (green, red, grey)
+         const results = wordToGuess.map((letter, idx) =>
+            userGuess.map((l, i) => {
+               let color = ''
+               color =
+                  letter === l && idx === i
+                     ? 'green'
+                     : letter === l
+                     ? 'yellow'
+                     : 'red'
+               return {
+                  l,
+                  color,
+               }
+            })
+         )
+         return results.flat(5)
+         // console.log(results.flat(5))
          // put sqaures into state - model as obj with color prop (white if null)
       }
    }
