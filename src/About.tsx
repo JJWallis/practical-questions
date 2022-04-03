@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 // user has 6 attempts (wins if guesses correct < 6)
@@ -7,23 +7,24 @@ import { v4 as uuid } from 'uuid'
 
 const WORD_TO_GUESS = 'agent'
 
+const produceGrid = () => {
+   const letters = []
+   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+   for (let i = 0; i < 15 / 2; i++) {
+      const alphaRandom = Math.floor(Math.random() * alphabet.length)
+      if (i < WORD_TO_GUESS.length) letters.push(WORD_TO_GUESS[i].toUpperCase())
+      letters.push(alphabet[alphaRandom].toUpperCase())
+   }
+   return letters
+}
+
 const About = () => {
    const [guess, setGuess] = useState({
       userGuess: '',
       guessesRemaining: 6,
    })
    const inputRef = useRef<HTMLInputElement | null>(null)
-
-   const produceGrid = (word: string) => {
-      const letters = []
-      const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-      for (let i = 0; i < 15 / 2; i++) {
-         const alphaRandom = Math.floor(Math.random() * alphabet.length)
-         if (i < word.length) letters.push(word[i].toUpperCase())
-         letters.push(alphabet[alphaRandom].toUpperCase())
-      }
-      return letters
-   }
+   const letters = useMemo(produceGrid, [])
 
    const handleKeyDown = ({ key }: React.KeyboardEvent) => {
       // if (key === 'Enter') submit input as guess
@@ -44,7 +45,7 @@ const About = () => {
             ref={inputRef}
          />
          <div role="grid" className="grid-letters">
-            {produceGrid(WORD_TO_GUESS).map((letter) => (
+            {letters.map((letter) => (
                <div key={uuid()} className="grid-letter">
                   {letter}
                </div>
