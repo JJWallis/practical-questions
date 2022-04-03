@@ -156,9 +156,8 @@ main {
 .grid-letters {
    outline: 1px solid black;
    display: grid;
-   grid-template-columns: repeat(15, 1fr);
+   grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
    gap: 1rem;
-   max-width: 300px;
 }
 
 .grid-letter {

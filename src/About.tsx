@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 // user has 6 attempts (wins if guesses correct < 6)
 // highlight each try => yellow if letter present + wrong position
@@ -43,10 +44,11 @@ const About = () => {
             ref={inputRef}
          />
          <div role="grid" className="grid-letters">
-            <div className="grid-letter">J</div>
-            <div className="grid-letter">J</div>
-            <div className="grid-letter">J</div>
-            <div className="grid-letter">J</div>
+            {produceGrid(WORD_TO_GUESS).map((letter) => (
+               <div key={uuid()} className="grid-letter">
+                  {letter}
+               </div>
+            ))}
          </div>
       </main>
    )
