@@ -1,10 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-// user has 6 attempts (wins if guesses correct < 6)
-// highlight each try => yellow if letter present + wrong position
-// green => letter present + correct position | greyed out => letter not present
-
 const WORD_TO_GUESS = 'agent'
 
 const produceGrid = () => {
@@ -23,11 +19,20 @@ const About = () => {
       userGuess: '',
       guessesRemaining: 6,
    })
+   // const [squares, setSqaures] = useState(() => produceGrid())
    const inputRef = useRef<HTMLInputElement | null>(null)
    const letters = useMemo(produceGrid, [])
 
-   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
-      // if (key === 'Enter') submit input as guess
+   const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
+      if (key === 'Enter') {
+         const wordToGuess = WORD_TO_GUESS.split('')
+         const userGuess = guess.userGuess.split('')
+         const results = []
+         console.log(wordToGuess, userGuess)
+         // map through word to guess arr
+         // return obj with letter as prop + color string as value (green, red, grey)
+         // put sqaures into state - model as obj with color prop (white if null)
+      }
    }
 
    useEffect(() => inputRef?.current?.focus(), [])
@@ -41,8 +46,9 @@ const About = () => {
             value={guess.userGuess}
             onChange={(e) => setGuess({ ...guess, userGuess: e.target.value })}
             className="input"
-            onKeyDown={handleKeyDown}
+            onKeyDown={(e) => guess.userGuess.length === 5 && handleKeyDown(e)}
             ref={inputRef}
+            maxLength={5}
          />
          <div role="grid" className="grid-letters">
             {letters.map((letter) => (
