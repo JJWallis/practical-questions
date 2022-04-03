@@ -39,8 +39,8 @@ const About = () => {
       if (key === 'Enter') {
          const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
-         const results = wordToGuess.map((letter, idx) =>
-            userGuess.map((l, i) => {
+         const results = userGuess.map((letter, idx) =>
+            wordToGuess.map((l, i) => {
                let color = ''
                color =
                   letter === l && idx === i
@@ -49,12 +49,12 @@ const About = () => {
                      ? 'yellow'
                      : 'grey'
                return {
-                  l,
+                  letter,
                   color,
                }
             })
          )
-         console.log(results.flat(5))
+         console.log(results.flat(5).map((l) => l.color !== 'grey' && { ...l }))
          // repetitive code - occuring 5 times
       }
    }
