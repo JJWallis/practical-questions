@@ -18,14 +18,15 @@ const About = () => {
 
    const produceGrid = () => {
       const letters = []
-      const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'
       for (let i = 0; i < 15 / 2; i++) {
          const alphaRandom = Math.floor(Math.random() * alphabet.length)
-         if (i < WORD_TO_GUESS.length)
+         if (i < WORD_TO_GUESS.length) {
             letters.push({
                letter: WORD_TO_GUESS[i].toUpperCase(),
                color: 'white',
             })
+         }
          letters.push({
             letter: alphabet[alphaRandom].toUpperCase(),
             color: 'white',
