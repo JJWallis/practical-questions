@@ -146,3 +146,21 @@ main {
 :focus {
    outline: 2px solid red;
 }
+
+/* word guessing game */
+
+.title {
+}
+
+.grid-letters {
+   outline: 1px solid black;
+   display: grid;
+   grid-template-columns: repeat(12, 1fr);
+   gap: 1rem;
+}
+
+.grid-letter {
+   border: 1px solid black;
+   border-radius: 5px;
+   padding: 1rem;
+}

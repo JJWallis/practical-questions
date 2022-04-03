@@ -5,7 +5,18 @@ import React from 'react'
 // green => letter present + correct position | greyed out => letter not present
 
 const About = () => {
-   return <></>
+   return (
+      <main>
+         <h2 className="title">You have 3 guesses remaing</h2>
+         <input />
+         <div role="grid" className="grid-letters">
+            <div className="grid-letter">J</div>
+            <div className="grid-letter">J</div>
+            <div className="grid-letter">J</div>
+            <div className="grid-letter">J</div>
+         </div>
+      </main>
+   )
 }
 
 export default About
