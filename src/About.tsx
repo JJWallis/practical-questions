@@ -1,27 +1,39 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 const WORD_TO_GUESS = 'agent'
-
-const produceGrid = () => {
-   const letters = []
-   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-   for (let i = 0; i < 15 / 2; i++) {
-      const alphaRandom = Math.floor(Math.random() * alphabet.length)
-      if (i < WORD_TO_GUESS.length) letters.push(WORD_TO_GUESS[i].toUpperCase())
-      letters.push(alphabet[alphaRandom].toUpperCase())
-   }
-   return letters
-}
 
 const About = () => {
    const [guess, setGuess] = useState({
       userGuess: '',
       guessesRemaining: 6,
    })
-   // const [squares, setSqaures] = useState(() => produceGrid())
+   const [squares, setSquares] = useState<
+      | {
+           letter: string
+           color: string
+        }[]
+      | null
+   >(null)
    const inputRef = useRef<HTMLInputElement | null>(null)
-   const letters = useMemo(produceGrid, [])
+
+   const produceGrid = () => {
+      const letters = []
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+      for (let i = 0; i < 15 / 2; i++) {
+         const alphaRandom = Math.floor(Math.random() * alphabet.length)
+         if (i < WORD_TO_GUESS.length)
+            letters.push({
+               letter: WORD_TO_GUESS[i].toUpperCase(),
+               color: 'white',
+            })
+         letters.push({
+            letter: alphabet[alphaRandom].toUpperCase(),
+            color: 'white',
+         })
+      }
+      setSquares(letters)
+   }
 
    const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
       if (key === 'Enter') {
@@ -48,7 +60,10 @@ const About = () => {
       }
    }
 
-   useEffect(() => inputRef?.current?.focus(), [])
+   useEffect(() => {
+      produceGrid()
+      inputRef?.current?.focus()
+   }, [])
 
    return (
       <main>
@@ -64,8 +79,12 @@ const About = () => {
             maxLength={5}
          />
          <div role="grid" className="grid-letters">
-            {letters.map((letter) => (
-               <div key={uuid()} className="grid-letter">
+            {squares?.map(({ letter, color }) => (
+               <div
+                  key={uuid()}
+                  className="grid-letter"
+                  style={{ backgroundColor: color }}
+               >
                   {letter}
                </div>
             ))}
