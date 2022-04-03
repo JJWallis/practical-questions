@@ -150,6 +150,7 @@ main {
 /* word guessing game */
 
 .title {
+   margin-inline: auto;
 }
 
 .grid-letters {
@@ -157,10 +158,13 @@ main {
    display: grid;
    grid-template-columns: repeat(12, 1fr);
    gap: 1rem;
+   max-width: 300px;
 }
 
 .grid-letter {
-   border: 1px solid black;
+   display: grid;
+   place-items: center;
+   border: 2px solid black;
    border-radius: 5px;
-   padding: 1rem;
+   padding: 0.5rem 1rem;
 }
