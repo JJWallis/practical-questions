@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
+interface Letter {
+   letter: string
+   color: string
+}
+
 const WORD_TO_GUESS = 'agent'
 
 const About = () => {
@@ -8,13 +13,7 @@ const About = () => {
       userGuess: '',
       guessesRemaining: 6,
    })
-   const [squares, setSquares] = useState<
-      | {
-           letter: string
-           color: string
-        }[]
-      | null
-   >(null)
+   const [squares, setSquares] = useState<Letter[] | null>(null)
    const inputRef = useRef<HTMLInputElement | null>(null)
 
    const produceGrid = () => {
@@ -47,16 +46,15 @@ const About = () => {
                      ? 'green'
                      : letter === l
                      ? 'yellow'
-                     : 'red'
+                     : 'grey'
                return {
                   l,
                   color,
                }
             })
          )
-         return results.flat(5)
-         // console.log(results.flat(5))
-         // put sqaures into state - model as obj with color prop (white if null)
+         console.log(results.flat(5))
+         // repetitive code - occuring 5 times
       }
    }
 
