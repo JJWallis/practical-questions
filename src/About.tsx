@@ -14,16 +14,15 @@ const About = () => {
    const inputRef = useRef<HTMLInputElement | null>(null)
 
    const produceGrid = (word: string) => {
-      const letters = [...word.split('')]
+      const letters = []
       const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-      for (let i = 0; i < 15 - word.length; i++) {
-         const random = Math.floor(Math.random() * alphabet.length)
-         letters.push(alphabet[random])
+      for (let i = 0; i < 15 / 2; i++) {
+         const alphaRandom = Math.floor(Math.random() * alphabet.length)
+         if (i < word.length) letters.push(word[i].toUpperCase())
+         letters.push(alphabet[alphaRandom].toUpperCase())
       }
       return letters
    }
-
-   console.log(produceGrid(WORD_TO_GUESS))
 
    const handleKeyDown = ({ key }: React.KeyboardEvent) => {
       // if (key === 'Enter') submit input as guess
