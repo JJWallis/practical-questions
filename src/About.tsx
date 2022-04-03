@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // user has 6 attempts (wins if guesses correct < 6)
 // highlight each try => yellow if letter present + wrong position
@@ -9,6 +9,13 @@ const About = () => {
       userGuess: '',
       guessesRemaining: 6,
    })
+   const inputRef = useRef<HTMLInputElement | null>(null)
+
+   const handleKeyDown = ({ key }: React.KeyboardEvent) => {
+      // if (key === 'Enter') submit input as guess
+   }
+
+   useEffect(() => inputRef?.current?.focus(), [])
 
    return (
       <main>
@@ -19,6 +26,8 @@ const About = () => {
             value={guess.userGuess}
             onChange={(e) => setGuess({ ...guess, userGuess: e.target.value })}
             className="input"
+            onKeyDown={handleKeyDown}
+            ref={inputRef}
          />
          <div role="grid" className="grid-letters">
             <div className="grid-letter">J</div>
