@@ -4,12 +4,26 @@ import React, { useEffect, useRef, useState } from 'react'
 // highlight each try => yellow if letter present + wrong position
 // green => letter present + correct position | greyed out => letter not present
 
+const WORD_TO_GUESS = 'agent'
+
 const About = () => {
    const [guess, setGuess] = useState({
       userGuess: '',
       guessesRemaining: 6,
    })
    const inputRef = useRef<HTMLInputElement | null>(null)
+
+   const produceGrid = (word: string) => {
+      const letters = [...word.split('')]
+      const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+      for (let i = 0; i < 15 - word.length; i++) {
+         const random = Math.floor(Math.random() * alphabet.length)
+         letters.push(alphabet[random])
+      }
+      return letters
+   }
+
+   console.log(produceGrid(WORD_TO_GUESS))
 
    const handleKeyDown = ({ key }: React.KeyboardEvent) => {
       // if (key === 'Enter') submit input as guess
