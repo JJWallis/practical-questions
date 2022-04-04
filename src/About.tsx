@@ -13,7 +13,7 @@ const About = () => {
       userGuess: '',
       guessesRemaining: 6,
    })
-   const [squares, setSquares] = useState<Letter[] | null>(null)
+   const [squares, setSquares] = useState<Letter[]>([])
    const inputRef = useRef<HTMLInputElement | null>(null)
 
    const produceGrid = () => {
@@ -35,6 +35,15 @@ const About = () => {
       setSquares(letters)
    }
 
+   const updateGrid = (results: Letter[]) => {
+      const currState = [...squares]
+      const newState = currState.map((square) => {
+         const included = results.find(({ letter }) => letter === square.letter)
+         return included ? { ...square, color: included.color } : square
+      })
+      setSquares(newState)
+   }
+
    const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
       if (key === 'Enter') {
          // const wordToGuess = WORD_TO_GUESS.split('')
@@ -45,26 +54,9 @@ const About = () => {
                guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
             return { letter, color }
          })
-         return results
-
-         // const results = userGuess.map((letter, idx) =>
-         //    wordToGuess.map((l, i) => {
-         //       let color = ''
-         //       color =
-         //          letter === l && idx === i
-         //             ? 'green'
-         //             : letter === l
-         //             ? 'yellow'
-         //             : 'grey'
-         //       return {
-         //          letter,
-         //          color,
-         //       }
-         //    })
-         // )
-         // console.log(results.flat(5).map((l) => l.color !== 'grey' && { ...l }))
-         // repetitive code - occuring 5 times
-         // override any prev state with new letters (not ones originally in grid)
+         console.log(results)
+         updateGrid(results)
+         // solved? => override any prev state with new letters (not ones originally in grid)
       }
    }
 
