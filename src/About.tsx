@@ -16,6 +16,7 @@ const About = () => {
    const [squares, setSquares] = useState<Letter[]>([])
    const [hasWon, setHasWon] = useState(false)
    const inputRef = useRef<HTMLInputElement | null>(null)
+   const updateGuessesRemaining = useRef(false)
 
    const produceGrid = () => {
       const letters = []
@@ -70,15 +71,26 @@ const About = () => {
    }
 
    useEffect(() => {
+      if (!updateGuessesRemaining.current) {
+         updateGuessesRemaining.current = true
+         return
+      }
+      const hasWon =
+         squares.filter(({ color }) => color === 'green').length >= 5 // change to === post duplicate solution
+      if (hasWon) {
+         setHasWon(hasWon)
+         return
+      }
+      setGuess((prev) => ({
+         ...prev,
+         guessesRemaining: prev.guessesRemaining - 1,
+      }))
+   }, [squares])
+
+   useEffect(() => {
       produceGrid()
       inputRef?.current?.focus()
    }, [])
-
-   useEffect(() => {
-      const hasWon =
-         squares.filter(({ color }) => color === 'green').length >= 5 // change to === post duplicate solution
-      if (hasWon) setHasWon(hasWon)
-   }, [squares])
 
    return (
       <main>
