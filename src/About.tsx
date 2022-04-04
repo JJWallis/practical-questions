@@ -71,26 +71,25 @@ const About = () => {
    }
 
    useEffect(() => {
-      if (!updateGuessesRemaining.current) {
-         updateGuessesRemaining.current = true
-         return
-      }
-      const hasWon =
-         squares.filter(({ color }) => color === 'green').length >= 5 // change to === post duplicate solution
-      if (hasWon) {
-         setHasWon(hasWon)
-         return
-      }
-      setGuess((prev) => ({
-         ...prev,
-         guessesRemaining: prev.guessesRemaining - 1,
-      }))
-   }, [squares])
-
-   useEffect(() => {
       produceGrid()
       inputRef?.current?.focus()
    }, [])
+
+   useEffect(() => {
+      if (updateGuessesRemaining.current) {
+         const hasWon =
+            squares.filter(({ color }) => color === 'green').length >= 5 // change to === post duplicate solution
+         if (hasWon) {
+            setHasWon(hasWon)
+            return
+         }
+         setGuess((prev) => ({
+            ...prev,
+            guessesRemaining: prev.guessesRemaining - 1,
+         }))
+      }
+      if (squares.length) updateGuessesRemaining.current = true
+   }, [squares])
 
    return (
       <main>
