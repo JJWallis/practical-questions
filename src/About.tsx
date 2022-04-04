@@ -38,26 +38,24 @@ const About = () => {
    const updateGrid = (results: Letter[]) => {
       const currState = [...squares]
       const newState = currState.map((square) => {
-         const included = results.find(({ letter }) => letter === square.letter)
+         const included = results.find(
+            ({ letter }) => letter.toUpperCase() === square.letter
+         )
          return included ? { ...square, color: included.color } : square
       })
-      console.log(newState)
       setSquares(newState)
    }
 
    const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
       if (key === 'Enter') {
-         // const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
          const results = userGuess.map((letter, idx) => {
-            const guessIdx = WORD_TO_GUESS.indexOf(letter) // repeat letters - wont work
+            const guessIdx = WORD_TO_GUESS.indexOf(letter) // repeat letters - wont work!!!!!
             const color =
                guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
             return { letter, color }
          })
-         console.log(results) // test if working - believe it works?
-         updateGrid(results) // colors aren't being transfered over to updateGrid (ref type issue?)
-         // solved? => override any prev state with new letters (not ones originally in grid)
+         updateGrid(results)
       }
    }
 
