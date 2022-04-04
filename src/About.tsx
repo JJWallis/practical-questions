@@ -59,6 +59,17 @@ const About = () => {
       }
    }
 
+   const determineGridLabel = (color: string) => {
+      let str = 'letter guessed '
+      str +=
+         color === 'green'
+            ? 'correctly and in correct spot'
+            : color === 'yellow'
+            ? 'correctly but in wrong spot'
+            : 'incorrectly'
+      return str
+   }
+
    useEffect(() => {
       produceGrid()
       inputRef?.current?.focus()
@@ -76,18 +87,24 @@ const About = () => {
             onKeyDown={(e) => guess.userGuess.length === 5 && handleKeyDown(e)}
             ref={inputRef}
             maxLength={5}
+            aria-label="Guess a five letter word"
          />
-         <div role="grid" className="grid-letters">
+         <section
+            role="grid"
+            className="grid-letters"
+            aria-label="Letters to guess"
+         >
             {squares?.map(({ letter, color }) => (
                <div
                   key={uuid()}
+                  role="gridcell"
                   className="grid-letter"
                   style={{ backgroundColor: color }}
                >
-                  {letter}
+                  <p>{letter}</p>
                </div>
             ))}
-         </div>
+         </section>
       </main>
    )
 }
