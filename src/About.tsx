@@ -8,6 +8,10 @@ interface Letter {
 
 const WORD_TO_GUESS = 'agent'
 
+// Repeat letters in both the word and guess should be handled correctly
+// Submissions with repeat letters should provide valid feedback
+// (e.g. daily word='baring', submitted word='abbey', the 'a' and the first 'b' should be highlighted yellow)
+
 const About = () => {
    const [guess, setGuess] = useState({
       userGuess: '',
@@ -93,7 +97,11 @@ const About = () => {
 
    return (
       <main>
-         {hasWon && <p>YOU WIN!</p>}
+         {hasWon && (
+            <p>
+               You correctly guessed the word in {guess.guessesRemaining} tries!
+            </p>
+         )}
          {guess.guessesRemaining > 0 ? (
             <>
                <h2 className="title">
@@ -132,7 +140,7 @@ const About = () => {
                </section>
             </>
          ) : (
-            <p>YOU LOSE!</p>
+            <p>The word was {WORD_TO_GUESS}</p>
          )}
       </main>
    )
