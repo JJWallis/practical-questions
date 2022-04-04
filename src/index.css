@@ -116,7 +116,10 @@ main {
 
 .input {
    border: 2px solid black;
-   /* focus styles */
+}
+
+.input:disabled {
+   cursor: not-allowed;
 }
 
 .results-list {
