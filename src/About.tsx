@@ -56,17 +56,16 @@ const About = () => {
          )
          console.log(results.flat(5).map((l) => l.color !== 'grey' && { ...l }))
          // repetitive code - occuring 5 times
+         // override any prev state with new letters (not ones originally in grid)
       }
    }
 
    const determineGridLabel = (color: string) => {
       let str = 'letter guessed '
-      str +=
-         color === 'green'
-            ? 'correctly and in correct spot'
-            : color === 'yellow'
-            ? 'correctly but in wrong spot'
-            : 'incorrectly'
+      if (color === 'green') str += 'correctly and in correct spot'
+      if (color === 'yellow') str += 'correctly but not in correct spot'
+      if (color === 'grey') str += 'incorrectly'
+      if (color === 'white') str = 'letter not yet guessed'
       return str
    }
 
@@ -100,6 +99,7 @@ const About = () => {
                   role="gridcell"
                   className="grid-letter"
                   style={{ backgroundColor: color }}
+                  aria-label={`${letter}  ${determineGridLabel(color)}`}
                >
                   <p>{letter}</p>
                </div>
