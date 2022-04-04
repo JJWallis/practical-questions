@@ -37,15 +37,15 @@ const About = () => {
 
    const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
       if (key === 'Enter') {
-         const wordToGuess = WORD_TO_GUESS.split('')
+         // const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
          const results = userGuess.map((letter, idx) => {
-            const guessIdx = WORD_TO_GUESS.indexOf(letter)
-            const color = guessIdx === -1 ? 'grey' : 'green'
-            return null
-         }) // repeat letters - wont work
-
-         console.log(userGuess, wordToGuess)
+            const guessIdx = WORD_TO_GUESS.indexOf(letter) // repeat letters - wont work
+            const color =
+               guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
+            return { letter, color }
+         })
+         return results
 
          // const results = userGuess.map((letter, idx) =>
          //    wordToGuess.map((l, i) => {
