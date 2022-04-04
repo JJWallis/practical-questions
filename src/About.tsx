@@ -39,22 +39,30 @@ const About = () => {
       if (key === 'Enter') {
          const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
-         const results = userGuess.map((letter, idx) =>
-            wordToGuess.map((l, i) => {
-               let color = ''
-               color =
-                  letter === l && idx === i
-                     ? 'green'
-                     : letter === l
-                     ? 'yellow'
-                     : 'grey'
-               return {
-                  letter,
-                  color,
-               }
-            })
-         )
-         console.log(results.flat(5).map((l) => l.color !== 'grey' && { ...l }))
+         const results = userGuess.map((letter, idx) => {
+            const guessIdx = WORD_TO_GUESS.indexOf(letter)
+            const color = guessIdx === -1 ? 'grey' : 'green'
+            return null
+         }) // repeat letters - wont work
+
+         console.log(userGuess, wordToGuess)
+
+         // const results = userGuess.map((letter, idx) =>
+         //    wordToGuess.map((l, i) => {
+         //       let color = ''
+         //       color =
+         //          letter === l && idx === i
+         //             ? 'green'
+         //             : letter === l
+         //             ? 'yellow'
+         //             : 'grey'
+         //       return {
+         //          letter,
+         //          color,
+         //       }
+         //    })
+         // )
+         // console.log(results.flat(5).map((l) => l.color !== 'grey' && { ...l }))
          // repetitive code - occuring 5 times
          // override any prev state with new letters (not ones originally in grid)
       }
