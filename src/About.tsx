@@ -19,7 +19,7 @@ const About = () => {
    const produceGrid = () => {
       const letters = []
       const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-      for (let i = 0; i < 15 / 2; i++) {
+      for (let i = 0; i < 11; i++) {
          const alphaRandom = Math.floor(Math.random() * alphabet.length)
          if (i < WORD_TO_GUESS.length) {
             letters.push({
