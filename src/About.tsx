@@ -41,6 +41,7 @@ const About = () => {
          const included = results.find(({ letter }) => letter === square.letter)
          return included ? { ...square, color: included.color } : square
       })
+      console.log(newState)
       setSquares(newState)
    }
 
@@ -54,8 +55,8 @@ const About = () => {
                guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
             return { letter, color }
          })
-         console.log(results)
-         updateGrid(results)
+         console.log(results) // test if working - believe it works?
+         updateGrid(results) // colors aren't being transfered over to updateGrid (ref type issue?)
          // solved? => override any prev state with new letters (not ones originally in grid)
       }
    }
