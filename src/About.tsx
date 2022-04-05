@@ -6,7 +6,7 @@ interface Letter {
    color: string
 }
 
-const WORD_TO_GUESS = 'agent'
+const WORD_TO_GUESS = 'agena'
 
 // Repeat letters in both the word and guess should be handled correctly
 // Submissions with repeat letters should provide valid feedback
@@ -57,9 +57,11 @@ const About = () => {
          const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
          const results = userGuess.map((letter, idx) => {
-            const regex = new RegExp(`${letter}`, 'gi')
-            const search = regex.exec(WORD_TO_GUESS)
-            console.log(search?.index)
+            // const regex = new RegExp(`\\${letter}\\2+`, 'gi')
+            // const search = regex.exec(WORD_TO_GUESS)
+            // const newIdx = search?.index || -1
+            // console.log(search)
+
             const guessIdx = WORD_TO_GUESS.indexOf(letter)
             const color =
                guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
