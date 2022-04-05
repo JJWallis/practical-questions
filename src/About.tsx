@@ -54,13 +54,19 @@ const About = () => {
 
    const handleKeyDown = ({ key }: React.KeyboardEvent<HTMLInputElement>) => {
       if (key === 'Enter') {
+         const wordToGuess = WORD_TO_GUESS.split('')
          const userGuess = guess.userGuess.split('')
          const results = userGuess.map((letter, idx) => {
-            const guessIdx = WORD_TO_GUESS.indexOf(letter) // repeat letters - wont work!!!!!
+            const regex = new RegExp(`${letter}`, 'gi')
+            const search = regex.exec(WORD_TO_GUESS)
+            console.log(search?.index)
+            const guessIdx = WORD_TO_GUESS.indexOf(letter)
             const color =
                guessIdx === -1 ? 'grey' : guessIdx === idx ? 'green' : 'yellow'
             return { letter, color }
          })
+
+         console.log(wordToGuess, userGuess)
          updateGrid(results)
       }
    }
