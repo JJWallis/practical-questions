@@ -44,6 +44,11 @@ const About = () => {
    const updateGrid = (results: Letter[]) => {
       const currState = [...squares]
       const newState = currState.map((square) => {
+         // don't find() - all letters turn to same color
+         // still map() => check curr idx + see if results[idx] is truthy (we haven't finished adding results yet)
+         // if true => do below code (find())
+         // else = return square (add rest of currState)
+         // could get rid of wrong letters in square?
          const included = results.find(
             ({ letter }) => letter.toUpperCase() === square.letter
          )
@@ -61,6 +66,10 @@ const About = () => {
             // const search = regex.exec(WORD_TO_GUESS)
             // const newIdx = search?.index || -1
             // console.log(search)
+
+            // filter each guessed letter + check all idxs found at in wordToGuess (nested loop)
+            // obj of letter + each idx found => use to loop userGuess + check if letter found at idxs
+            // return new obj with letter + color for each result/iteration - produceGrid => change from find()
 
             const guessIdx = WORD_TO_GUESS.indexOf(letter)
             const color =
