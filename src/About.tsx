@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 interface Letter {
@@ -159,6 +160,7 @@ const About = () => {
          ) : (
             <p>The word was {WORD_TO_GUESS}</p>
          )}
+         <Link to="/carousel">carousel</Link>
       </main>
    )
 }
