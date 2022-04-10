@@ -7,13 +7,13 @@ const Carousel: React.FC = () => {
    const timerRef = useRef<null | NodeJS.Timeout>(null)
 
    const increment = () => {
-      setActiveImg((prev) => prev + 1)
+      if (activeImg < images.length) setActiveImg((prev) => prev + 1)
       resetTimer()
       setupTimer()
    }
 
    const decrement = () => {
-      setActiveImg((prev) => prev - 1)
+      if (activeImg > 0) setActiveImg((prev) => prev - 1)
       resetTimer()
       setupTimer()
    }
@@ -62,16 +62,10 @@ const Carousel: React.FC = () => {
       <main>
          <div className="image-ct">
             <img src={images.length && updateImg(activeImg)} alt="" />
-            <button
-               className="btn btn-right"
-               onClick={() => activeImg < images.length && increment()}
-            >
+            <button className="btn btn-right" onClick={increment}>
                &rarr;
             </button>
-            <button
-               className="btn btn-left"
-               onClick={() => activeImg > 0 && decrement()}
-            >
+            <button className="btn btn-left" onClick={decrement}>
                &larr;
             </button>
          </div>
