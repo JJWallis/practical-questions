@@ -1,6 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Carousel: React.FC = () => {
+   const [images, setImages] = useState([])
+
+   const fetchImgs = async () => {
+      try {
+      } catch (error) {
+         console.error(error)
+      }
+   }
+
    return (
       <main>
          <div className="image-ct">
