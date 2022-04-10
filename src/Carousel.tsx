@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react'
 
 const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
-   const [activeImg, setActiveImg] = useState(0)
+   const [activeImg, setActiveImg] = useState({
+      active: 0,
+      url: '',
+   })
 
    const updateImg = (index: number) => {
       const data = images[index].data
       console.log(data)
    }
 
-   const increment = () => setActiveImg((prev) => prev + 1)
+   const increment = () =>
+      setActiveImg((prev) => ({ ...prev, active: prev.active + 1 }))
 
-   const decrement = () => setActiveImg((prev) => prev - 1)
+   const decrement = () =>
+      setActiveImg((prev) => ({ ...prev, active: prev.active - 1 }))
 
    useEffect(() => {
       const fetchImgs = async () => {
@@ -29,7 +34,7 @@ const Carousel: React.FC = () => {
       fetchImgs()
    }, [])
 
-   useEffect(() => console.log(images))
+   useEffect(() => console.log(images, activeImg.active))
 
    return (
       <main>
@@ -37,13 +42,13 @@ const Carousel: React.FC = () => {
             {/* <img src="" alt="" /> */}
             <button
                className="btn btn-right"
-               onClick={() => activeImg < images.length && increment()}
+               onClick={() => activeImg.active < images.length && increment()}
             >
                &rarr;
             </button>
             <button
                className="btn btn-left"
-               onClick={() => activeImg > 0 && decrement()}
+               onClick={() => activeImg.active > 0 && decrement()}
             >
                &larr;
             </button>
