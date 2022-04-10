@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react'
 
 const Carousel: React.FC = () => {
-   const [images, setImages] = useState([])
+   const [images, setImages] = useState<any[]>([])
+   const [activeImg, setActiveImg] = useState(0)
 
-   const fetchImgs = async () => {
-      try {
-         const res = await fetch('https://www.reddit.com/r/aww/top/.json?t=all')
-         const { data } = await res.json()
-         setImages(data.children)
-      } catch (error) {
-         console.error(error)
-      }
+   const updateImg = (index: number) => {
+      const res = images[index].data
+      //   console.log(data)
    }
 
    useEffect(() => {
+      const fetchImgs = async () => {
+         try {
+            const res = await fetch(
+               'https://www.reddit.com/r/aww/top/.json?t=all'
+            )
+            const { data } = await res.json()
+            setImages(data.children)
+         } catch (error) {
+            console.error(error)
+         }
+      }
+
       fetchImgs()
    }, [])
 
