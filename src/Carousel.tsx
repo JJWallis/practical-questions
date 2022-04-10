@@ -58,6 +58,10 @@ const Carousel: React.FC = () => {
       onMount.current = true
    }, [activeImg, updateImg])
 
+   useEffect(() => {
+      if (activeImg === images.length) setActiveImg(0)
+   }, [images, activeImg])
+
    return (
       <main>
          <div className="image-ct">
