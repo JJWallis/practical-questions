@@ -178,3 +178,18 @@ main {
    width: 90%;
    max-width: 700px;
 }
+
+.btn {
+   position: absolute;
+   display: block;
+   top: 50%;
+   transform: translateY(-50%);
+}
+
+.btn-left {
+   right: 0;
+}
+
+.btn-right {
+   left: 0;
+}
