@@ -1,13 +1,17 @@
 import React from 'react'
 
-function Greeter(props: any) {
-   return <div>Hello {/* Write your code here */}</div>
-}
+const Test = () => {
+   const [comment, setComment] = React.useState()
 
-class Test extends React.Component {
-   render() {
-      return <Greeter user="Admin" />
-   }
+   return (
+      <div>
+         <form>
+            <input type="text" />
+            <input type="button" value="Post" />
+         </form>
+         <ul>{/* comments */}</ul>
+      </div>
+   )
 }
 
 export default Test
