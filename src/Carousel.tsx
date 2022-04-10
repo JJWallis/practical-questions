@@ -4,6 +4,7 @@ const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
    const [activeImg, setActiveImg] = useState(0)
    const onMount = useRef(false)
+   const timerRef = useRef<null | NodeJS.Timeout>(null)
 
    const increment = () => setActiveImg((prev) => prev + 1)
 
@@ -18,6 +19,14 @@ const Carousel: React.FC = () => {
       [images]
    )
 
+   const setupTimer = () => {
+      const cancelId = setInterval(() => {
+         setActiveImg((prev) => prev + 1)
+         console.log('firing')
+      }, 3000)
+      timerRef.current = cancelId
+   }
+
    useEffect(() => {
       if (!onMount.current) {
          const fetchImgs = async () => {
@@ -30,13 +39,6 @@ const Carousel: React.FC = () => {
             } catch (error) {
                console.error(error)
             }
-         }
-
-         const setupTimer = () => {
-            setInterval(() => {
-               setActiveImg((prev) => prev + 1)
-               console.log('firing')
-            }, 3000)
          }
 
          setupTimer()
