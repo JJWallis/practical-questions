@@ -187,9 +187,9 @@ main {
 }
 
 .btn-left {
-   right: 0;
+   left: 0;
 }
 
 .btn-right {
-   left: 0;
+   right: 0;
 }

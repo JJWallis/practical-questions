@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
-   const [activeImg, setActiveImg] = useState({
-      active: 0,
-      url: '',
-   })
+   const [activeImg, setActiveImg] = useState(0)
 
-   const increment = () =>
-      setActiveImg((prev) => ({ ...prev, active: prev.active + 1 }))
+   const increment = () => setActiveImg((prev) => prev + 1)
 
-   const decrement = () =>
-      setActiveImg((prev) => ({ ...prev, active: prev.active - 1 }))
+   const decrement = () => setActiveImg((prev) => prev - 1)
+
+   const updateImg = (index: number) => {
+      const { data } = images[index]
+      const img = data.thumbnail
+      return img
+   }
 
    useEffect(() => {
       const fetchImgs = async () => {
@@ -28,32 +29,19 @@ const Carousel: React.FC = () => {
       fetchImgs()
    }, [])
 
-   useEffect(() => {
-      const updateImg = (index: number) => {
-         const { data } = images[index]
-         const img = data.thumbnail
-         //   return img
-         setActiveImg({ ...activeImg, url: img })
-      }
-
-      //   console.log(images)
-
-      images.length && updateImg(activeImg.active)
-   }, [activeImg, images])
-
    return (
       <main>
          <div className="image-ct">
-            <img src={activeImg.url} alt="" />
+            <img src={images.length && updateImg(activeImg)} alt="" />
             <button
                className="btn btn-right"
-               onClick={() => activeImg.active < images.length && increment()}
+               onClick={() => activeImg < images.length && increment()}
             >
                &rarr;
             </button>
             <button
                className="btn btn-left"
-               onClick={() => activeImg.active > 0 && decrement()}
+               onClick={() => activeImg > 0 && decrement()}
             >
                &larr;
             </button>
