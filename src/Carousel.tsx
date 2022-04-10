@@ -7,11 +7,6 @@ const Carousel: React.FC = () => {
       url: '',
    })
 
-   const updateImg = (index: number) => {
-      const data = images[index].data
-      console.log(data)
-   }
-
    const increment = () =>
       setActiveImg((prev) => ({ ...prev, active: prev.active + 1 }))
 
@@ -30,16 +25,26 @@ const Carousel: React.FC = () => {
             console.error(error)
          }
       }
-
       fetchImgs()
    }, [])
 
-   useEffect(() => console.log(images, activeImg.active))
+   useEffect(() => {
+      const updateImg = (index: number) => {
+         const { data } = images[index]
+         const img = data.thumbnail
+         //   return img
+         setActiveImg({ ...activeImg, url: img })
+      }
+
+      //   console.log(images)
+
+      images.length && updateImg(activeImg.active)
+   }, [activeImg, images])
 
    return (
       <main>
          <div className="image-ct">
-            {/* <img src="" alt="" /> */}
+            <img src={activeImg.url} alt="" />
             <button
                className="btn btn-right"
                onClick={() => activeImg.active < images.length && increment()}
