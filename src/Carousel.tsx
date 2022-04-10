@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
@@ -8,11 +8,14 @@ const Carousel: React.FC = () => {
 
    const decrement = () => setActiveImg((prev) => prev - 1)
 
-   const updateImg = (index: number) => {
-      const { data } = images[index]
-      const img = data.thumbnail
-      return img
-   }
+   const updateImg = useCallback(
+      (index: number) => {
+         const { data } = images[index]
+         const img = data.thumbnail
+         return img
+      },
+      [images]
+   )
 
    useEffect(() => {
       const fetchImgs = async () => {
@@ -26,8 +29,16 @@ const Carousel: React.FC = () => {
             console.error(error)
          }
       }
+
+      const setupTimer = () => {
+         setTimeout(() => {
+            updateImg(activeImg + 1)
+         }, 3000)
+      }
+
+      setupTimer()
       fetchImgs()
-   }, [])
+   }, [activeImg, updateImg])
 
    return (
       <main>
