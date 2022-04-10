@@ -7,7 +7,7 @@ const Button: React.FC = () => {
 const Carousel: React.FC = () => {
    return (
       <main>
-         <div>{/* <img src="" alt="" /> */}</div>
+         <div className="image-ct">{/* <img src="" alt="" /> */}</div>
       </main>
    )
 }

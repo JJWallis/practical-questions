@@ -169,3 +169,12 @@ main {
    border-radius: 5px;
    padding: 0.5rem 1rem;
 }
+
+/* carousel  */
+
+.image-ct {
+   outline: 1px solid black;
+   position: relative;
+   width: 90%;
+   max-width: 700px;
+}
