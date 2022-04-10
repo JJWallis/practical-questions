@@ -4,6 +4,13 @@ const Test = () => {
    const [comments, setComments] = React.useState<string[]>([])
    const [comment, setComment] = React.useState('')
 
+   const produceComment = () => {
+      if (comment.length) {
+         setComments([...comments, comment])
+         setComment('')
+      }
+   }
+
    return (
       <div>
          <form>
@@ -12,13 +19,7 @@ const Test = () => {
                value={comment}
                onChange={(e) => setComment(e.target.value)}
             />
-            <input
-               type="button"
-               value="Post"
-               onClick={() =>
-                  comment.length && setComments([...comments, comment])
-               }
-            />
+            <input type="button" value="Post" onClick={produceComment} />
          </form>
          <ul>
             {comments.map((comment, idx) => (
