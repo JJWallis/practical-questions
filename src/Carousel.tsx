@@ -6,9 +6,21 @@ const Carousel: React.FC = () => {
    const onMount = useRef(false)
    const timerRef = useRef<null | NodeJS.Timeout>(null)
 
-   const increment = () => setActiveImg((prev) => prev + 1)
+   const increment = () => {
+      setActiveImg((prev) => prev + 1)
+      resetTimer()
+      setupTimer()
+   }
 
-   const decrement = () => setActiveImg((prev) => prev - 1)
+   const decrement = () => {
+      setActiveImg((prev) => prev - 1)
+      resetTimer()
+      setupTimer()
+   }
+
+   const resetTimer = () => {
+      if (timerRef.current) clearInterval(timerRef.current)
+   }
 
    const updateImg = useCallback(
       (index: number) => {
@@ -22,7 +34,6 @@ const Carousel: React.FC = () => {
    const setupTimer = () => {
       const cancelId = setInterval(() => {
          setActiveImg((prev) => prev + 1)
-         console.log('firing')
       }, 3000)
       timerRef.current = cancelId
    }
