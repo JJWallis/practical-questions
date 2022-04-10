@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
    const [activeImg, setActiveImg] = useState(0)
+   const onMount = useRef(false)
 
    const increment = () => setActiveImg((prev) => prev + 1)
 
@@ -18,26 +19,30 @@ const Carousel: React.FC = () => {
    )
 
    useEffect(() => {
-      const fetchImgs = async () => {
-         try {
-            const res = await fetch(
-               'https://www.reddit.com/r/aww/top/.json?t=all'
-            )
-            const { data } = await res.json()
-            setImages(data.children)
-         } catch (error) {
-            console.error(error)
+      if (!onMount.current) {
+         const fetchImgs = async () => {
+            try {
+               const res = await fetch(
+                  'https://www.reddit.com/r/aww/top/.json?t=all'
+               )
+               const { data } = await res.json()
+               setImages(data.children)
+            } catch (error) {
+               console.error(error)
+            }
          }
-      }
 
-      const setupTimer = () => {
-         setTimeout(() => {
-            updateImg(activeImg + 1)
-         }, 3000)
-      }
+         const setupTimer = () => {
+            setInterval(() => {
+               setActiveImg((prev) => prev + 1)
+               console.log('firing')
+            }, 3000)
+         }
 
-      setupTimer()
-      fetchImgs()
+         setupTimer()
+         fetchImgs()
+      }
+      onMount.current = true
    }, [activeImg, updateImg])
 
    return (
