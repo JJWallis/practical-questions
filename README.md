@@ -91,7 +91,7 @@ This challenge involved retrieving a list of numbers from an endpoint and then p
 
 I wrote a nested loop over the sorted 'column' array and original data to check how many times each number was found, ultimately returning the length of each `filter()` array. In order to determine the percentage height for each column I calculated the current value divided by the total number of columns multipled by 100. ` style={{ height: ${Math.floor((amount / max) * 100)}%}}`.
 
-###
+### Word to Guess Game
 
 ### Useful resources
 
