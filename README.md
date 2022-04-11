@@ -103,7 +103,7 @@ What was particularly difficult was managing repeated letters in either the user
 
 [Task](https://frontendeval.com/questions/image-carousel)
 
-For this challenge I was tasked with
+For this challenge I was tasked with recreating a classic image carousel where the user would see an active image and could cycle through all available images using either button.
 
 ### Useful resources
 
