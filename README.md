@@ -103,7 +103,9 @@ What was particularly difficult was managing repeated letters in either the user
 
 [Task](https://frontendeval.com/questions/image-carousel)
 
-For this challenge I was tasked with recreating a classic image carousel where the user would see an active image and could cycle through all available images using either button positioned in front of the image. I first traversed through the fetched data to collate all the image urls and then stored those inside an array in state, whilst creating a separate counter state that would access a different url upon either increasing or decreasing each time a button was clicked.
+For this challenge I was tasked with recreating a classic image carousel where the user would see an active image and could cycle through all available images using either button positioned in front of the image.
+
+I first traversed through the fetched data to collate all the image urls and then stored those inside an array in state, whilst creating a separate counter state that would access a different url upon either increasing or decreasing each time a button was clicked. I prevented the user from cycling beyond the limits of the image array by never allowing the counter state to go beyond the image array length nor below zero.
 
 ### Useful resources
 
