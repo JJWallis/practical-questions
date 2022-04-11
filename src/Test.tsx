@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Test = () => {
-   const [comments, setComments] = React.useState<string[]>([])
+   const [comments, setComments] = React.useState([])
    const [comment, setComment] = React.useState('')
 
    const produceComment = () => {
