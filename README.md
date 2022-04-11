@@ -97,6 +97,10 @@ This challenge involved recreating the popular word guessing game Wordle where I
 
 What was particularly difficult was managing repeated letters in either the user's guess or word to guess, where I utilised an `exec()` method on my dynamic regular expression to match all instances of the user's guessed letter and their indexes. The different colours were achieved by modelling each letter in the grid as an object containing both a letter and colour property which would then be merged with an updated structure once the validate function had executed.
 
+### Image Carousel
+
+For this challenge
+
 ### Useful resources
 
 -  [Analogue Clock](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) = This resource helped me with the mathematical formula needed to determine the degree by which each hand should correctly rotate.
