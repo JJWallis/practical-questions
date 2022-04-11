@@ -93,7 +93,7 @@ I wrote a nested loop over the sorted 'column' array and original data to check 
 
 ### Word to Guess Game
 
-This challenge involved recreating the popular word guessing game Wordle where I had to reveal
+This challenge involved recreating the popular word guessing game Wordle where I had to reveal how accurate each letter was in the user's guess by colouring in each letter displayed in a grid format below the input.
 
 ### Useful resources
 
