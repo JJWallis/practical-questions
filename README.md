@@ -93,7 +93,7 @@ I wrote a nested loop over the sorted 'column' array and original data to check 
 
 ### Word to Guess Game
 
-This challenge involved recreating the popular word guessing game Wordle where I had to reveal how accurate each letter was in the user's guess by colouring in each letter displayed in a grid format below the input. The hardest part of this challenge was easily comparing both the user's guess and the word to guess to assertain if the current letter was guessed correctly and in the corresponding position. What was particularly difficult was managing repeated letters in either the user's guess or word to guess, where I utilised an `exec()` method on my dynamic regex to match all instances of the user's guess and their indexes.
+This challenge involved recreating the popular word guessing game Wordle where I had to reveal how accurate each letter was in the user's guess by colouring in each letter displayed in a grid format below the input. The hardest part of this challenge was easily comparing both the user's guess and the word to guess to assertain if the current letter was guessed correctly and in the corresponding position. What was particularly difficult was managing repeated letters in either the user's guess or word to guess, where I utilised an `exec()` method on my dynamic regular expression to match all instances of the user's guessed letter and their indexes.
 
 ### Useful resources
 
