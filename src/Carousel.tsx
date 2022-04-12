@@ -9,17 +9,18 @@ const Carousel: React.FC = () => {
    const increment = () => {
       if (activeImg < images.length) setActiveImg((prev) => prev + 1)
       resetTimer()
-      setupTimer()
    }
 
    const decrement = () => {
       if (activeImg > 0) setActiveImg((prev) => prev - 1)
       resetTimer()
-      setupTimer()
    }
 
    const resetTimer = () => {
-      if (timerRef.current) clearInterval(timerRef.current)
+      if (timerRef.current) {
+         clearInterval(timerRef.current)
+         setupTimer()
+      }
    }
 
    const updateImg = useCallback(
