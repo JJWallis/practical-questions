@@ -109,7 +109,7 @@ I first traversed through the fetched data to collate all the image urls and the
 
 ### Comment List Task
 
-Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state
+Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present.
 
 ### Useful resources
 
