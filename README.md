@@ -111,7 +111,9 @@ I first traversed through the fetched data to collate all the image urls and the
 
 ### Comment List Task
 
-Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present. I remembered to include a `key` for each list item so React would be able to distinguish between each JSX element object, and preserved the current state array by utilising the spread syntax whilst adding the new comment onto the end.
+Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present.
+
+I remembered to include a `key` for each list item so React would be able to distinguish between each JSX element object, and preserved the current state array by utilising the spread syntax whilst adding the new comment onto the end. Looking back on the challenge, I could have merged both the comments and comment state together into a single object since they were both related.
 
 ```jsx
 const [comments, setComments] = React.useState([])
