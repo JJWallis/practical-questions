@@ -109,6 +109,8 @@ I first traversed through the fetched data to collate all the image urls and the
 
 ### Comment List Task
 
+Here I was challenged with recreating classic todo list logic by implementing a list of comments that
+
 ### Useful resources
 
 -  [Analogue Clock](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) = This resource helped me with the mathematical formula needed to determine the degree by which each hand should correctly rotate.
