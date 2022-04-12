@@ -113,6 +113,18 @@ I first traversed through the fetched data to collate all the image urls and the
 
 Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present. I remembered to include a `key` for each list item so React would be able to distinguish between each JSX element object, and preserved the current state array by utilising the spread syntax whilst adding the new comment onto the end.
 
+```jsx
+const [comments, setComments] = React.useState([])
+const [comment, setComment] = React.useState('')
+
+const produceComment = () => {
+   if (comment.length) {
+      setComments([...comments, comment])
+      setComment('')
+   }
+}
+```
+
 ### Useful resources
 
 -  [Analogue Clock](https://dev.to/code_mystery/simple-analog-clock-using-html-css-javascript-2c6a) = This resource helped me with the mathematical formula needed to determine the degree by which each hand should correctly rotate.
