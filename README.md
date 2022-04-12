@@ -107,9 +107,11 @@ For this challenge I was tasked with recreating a classic image carousel where t
 
 I first traversed through the fetched data to collate all the image urls and then stored those inside an array in state, whilst creating a separate counter state that would access a different url upon either increasing or decreasing each time a button was clicked. I prevented the user from cycling beyond the limits of the image array by never allowing the counter state to go beyond the image array length nor below zero.
 
+<!-- code example -->
+
 ### Comment List Task
 
-Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present.
+Here I was challenged with recreating classic todo list logic by implementing a list of comments that would be generated each time the user would click a button upon typing a value into a text input. As well as creating a controlled component for the input, I stored all the comments as an array of strings inside some local state and mapped over that array to produce a list item for each string present. I remembered to include a `key` for each list item so React would be able to distinguish between each JSX element object, and preserved the current state array by utilising the spread syntax whilst adding the new comment onto the end.
 
 ### Useful resources
 
