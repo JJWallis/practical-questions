@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 const Carousel: React.FC = () => {
    const [images, setImages] = useState<any[]>([])
@@ -41,12 +42,18 @@ const Carousel: React.FC = () => {
    }
 
    const produceCircles = (images: any[]) => {
-      return images.map((img, idx) => (
+      return images.map((_, idx) => (
          <button
+            key={uuid()}
             style={{
                backgroundColor: `${activeImg === idx ? 'black' : 'white'}`,
             }}
             className="carousel-circle"
+            aria-label="change active image"
+            onClick={() => {
+               setActiveImg(idx)
+               resetTimer()
+            }}
          ></button>
       ))
    }
@@ -85,6 +92,7 @@ const Carousel: React.FC = () => {
             <button className="btn btn-left" onClick={decrement}>
                &larr;
             </button>
+            <div>{produceCircles(images)}</div>
          </div>
       </main>
    )
