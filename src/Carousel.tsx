@@ -5,9 +5,10 @@ const Carousel: React.FC = () => {
    const [activeImg, setActiveImg] = useState(0)
    const onMount = useRef(false)
    const timerRef = useRef<null | NodeJS.Timeout>(null)
+   const lastImg = images.length - 1
 
    const increment = () => {
-      if (activeImg < images.length - 1) setActiveImg((prev) => prev + 1)
+      if (activeImg < lastImg) setActiveImg((prev) => prev + 1)
       resetTimer()
    }
 
@@ -60,8 +61,8 @@ const Carousel: React.FC = () => {
    }, [activeImg, updateImg])
 
    useEffect(() => {
-      if (activeImg === images.length) setActiveImg(0)
-   }, [images, activeImg])
+      if (activeImg === lastImg) setActiveImg(0)
+   }, [images, activeImg, lastImg])
 
    return (
       <main>
