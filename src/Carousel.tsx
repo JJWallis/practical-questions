@@ -40,6 +40,17 @@ const Carousel: React.FC = () => {
       timerRef.current = cancelId
    }
 
+   const produceCircles = (images: any[]) => {
+      return images.map((img, idx) => (
+         <button
+            style={{
+               backgroundColor: `${activeImg === idx ? 'black' : 'white'}`,
+            }}
+            className="carousel-circle"
+         ></button>
+      ))
+   }
+
    useEffect(() => {
       if (!onMount.current) {
          const fetchImgs = async () => {
