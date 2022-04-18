@@ -7,7 +7,7 @@ const Carousel: React.FC = () => {
    const timerRef = useRef<null | NodeJS.Timeout>(null)
 
    const increment = () => {
-      if (activeImg < images.length) setActiveImg((prev) => prev + 1)
+      if (activeImg < images.length - 1) setActiveImg((prev) => prev + 1)
       resetTimer()
    }
 
