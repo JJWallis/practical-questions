@@ -241,6 +241,7 @@ const App: FC = () => {
             ))}
          </ul>
          <Link to="/about">About</Link>
+         <Link to="/dice">Dice</Link>
       </main>
    )
 }

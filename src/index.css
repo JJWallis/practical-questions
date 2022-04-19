@@ -204,3 +204,29 @@ main {
 .carousel-circle:not(:last-child) {
    margin-right: 1rem;
 }
+
+/* DICE */
+
+.dice-input {
+   appearance: textfield;
+}
+
+.dice-ct {
+   display: grid;
+   grid-template-columns: repeat(3, 1fr);
+   grid-auto-rows: minmax(50px, auto);
+   gap: 1rem 1.5rem;
+}
+
+.dice {
+   position: relative;
+   border: 2px solid black;
+}
+
+.dice-dot {
+   position: absolute;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background-color: black;
+}
