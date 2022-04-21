@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-const MAX_DICE = 6
 const TOTAL_NUM = 99
 
 const dotCoordinates = [
-   '20:20',
-   '30:30 40:40',
+   '18:18',
+   '2:30 40:0',
    '50:50 60:60 70:70',
    '80:80 90:90 100:100 120:120',
 ]
@@ -39,7 +38,7 @@ const Dice: React.FC = () => {
                      <div
                         key={uuid()}
                         className="dice-dot"
-                        style={{ left: `${x}`, top: `${y}` }}
+                        style={{ left: `${x}px`, top: `${y}px` }}
                      ></div>
                   )
                })}
