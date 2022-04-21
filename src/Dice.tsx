@@ -13,20 +13,16 @@ const dotCoordinates = {
 }
 
 const Dice: React.FC = () => {
-   const [diceNum, setDiceNum] = useState(0)
+   const [dice, setDice] = useState([])
+   const [diceNum, setDiceNum] = useState(1)
 
    const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
       const val = Number(target.value)
       if (val > 0 && val < 100) setDiceNum(val)
    }
 
-   const handleDiceRoll = () => {
-      //    TODO
-   }
-
    const produceDice = () => {
       const random = Math.floor(Math.random() * TOTAL_NUM) + 1
-      //    TODO
       //   dotCoordinates[String(randomNum) as keyof] => return dice +
       //  split (' ') + map() over arr within to produce
       //   dots inside using each val (inc key)
@@ -41,7 +37,7 @@ const Dice: React.FC = () => {
             onChange={handleOnChange}
             className="dice-input"
          />
-         <button onClick={handleDiceRoll}>Role</button>
+         <button onClick={produceDice}>Role</button>
          <div role="grid" className="dice-ct">
             {produceDice}
             <div role="gridcell" className="dice" aria-label={'2 sided dice'}>
