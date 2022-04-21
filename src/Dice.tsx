@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 const MAX_DICE = 6
+const TOTAL_NUM = 99
 
 const dotCoordinates = {
    1: '20:20 30:30',
@@ -12,18 +13,19 @@ const dotCoordinates = {
 }
 
 const Dice: React.FC = () => {
-   const [input, setInput] = useState(0)
+   const [diceNum, setDiceNum] = useState(0)
 
    const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
       const val = Number(target.value)
-      if (val > 0 && val < 100) setInput(val)
+      if (val > 0 && val < 100) setDiceNum(val)
    }
 
    const handleDiceRoll = () => {
       //    TODO
    }
 
-   const produceDice = (randomNum: number) => {
+   const produceDice = () => {
+      const random = Math.floor(Math.random() * TOTAL_NUM) + 1
       //    TODO
       //   dotCoordinates[String(randomNum) as keyof] => return dice +
       //  split (' ') + map() over arr within to produce
@@ -35,7 +37,7 @@ const Dice: React.FC = () => {
          <h1>Number of Dice</h1>
          <input
             type="number"
-            value={input}
+            value={diceNum}
             onChange={handleOnChange}
             className="dice-input"
          />
