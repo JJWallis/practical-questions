@@ -12,7 +12,7 @@ const dotCoordinates = [
 ]
 
 const Dice: React.FC = () => {
-   const [dice, setDice] = useState([])
+   const [dice, setDice] = useState<JSX.Element[]>([])
    const [diceNum, setDiceNum] = useState(1)
 
    const handleOnChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,13 +35,19 @@ const Dice: React.FC = () => {
             >
                {pair.map((val) => {
                   const [x, y] = val.split(':')
-                  return <div key={uuid()} className="dice-dot"></div>
+                  return (
+                     <div
+                        key={uuid()}
+                        className="dice-dot"
+                        style={{ left: `${x}`, top: `${y}` }}
+                     ></div>
+                  )
                })}
             </div>
          )
       })
+      setDice(diceArr)
    }
-   produceDice()
 
    return (
       <main>
@@ -53,7 +59,9 @@ const Dice: React.FC = () => {
             className="dice-input"
          />
          <button onClick={produceDice}>Role</button>
-         <div role="grid" className="dice-ct"></div>
+         <div role="grid" className="dice-ct">
+            {dice}
+         </div>
       </main>
    )
 }
