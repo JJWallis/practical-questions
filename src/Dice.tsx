@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 const MAX_DICE = 6
 const TOTAL_NUM = 99
@@ -20,11 +21,27 @@ const Dice: React.FC = () => {
    }
 
    const produceDice = () => {
-      const randomNum = Math.floor(Math.random() * TOTAL_NUM) + 1
+      //   const randomNum = Math.floor(Math.random() * TOTAL_NUM) + 1
       //   dotCoordinates[String(randomNum) as keyof] => return dice +
       //   split (' ') + map() over arr within to produce
       //   dots inside using each val (inc key)
+      const diceArr = dotCoordinates.map((cordPair, idx) => {
+         const pair = cordPair.split(' ')
+         return (
+            <div
+               key={uuid()}
+               className="dice"
+               aria-label={`${idx + 1} sided dice`}
+            >
+               {pair.map((val) => {
+                  const [x, y] = val.split(':')
+                  return <div key={uuid()} className="dice-dot"></div>
+               })}
+            </div>
+         )
+      })
    }
+   produceDice()
 
    return (
       <main>
@@ -36,11 +53,7 @@ const Dice: React.FC = () => {
             className="dice-input"
          />
          <button onClick={produceDice}>Role</button>
-         <div role="grid" className="dice-ct">
-            <div role="gridcell" className="dice" aria-label={'2 sided dice'}>
-               <div className="dice-dot"></div>
-            </div>
-         </div>
+         <div role="grid" className="dice-ct"></div>
       </main>
    )
 }
