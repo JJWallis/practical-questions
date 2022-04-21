@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 const TOTAL_NUM = 99
@@ -6,8 +6,10 @@ const TOTAL_NUM = 99
 const dotCoordinates = [
    '18:18',
    '2:30 40:0',
-   '50:50 60:60 70:70',
-   '80:80 90:90 100:100 120:120',
+   '2:30 18:18 40:0',
+   '2:30 2:0 40:0 40:36',
+   '2:30 2:0 18:18 40:0 40:36',
+   '2:30 2:15 2:0 40:0 40:20 40:36',
 ]
 
 const Dice: React.FC = () => {
@@ -20,7 +22,7 @@ const Dice: React.FC = () => {
    }
 
    const produceDice = () => {
-      //   const randomNum = Math.floor(Math.random() * TOTAL_NUM) + 1
+      const randomNum = Math.floor(Math.random() * TOTAL_NUM) + 1
       //   dotCoordinates[String(randomNum) as keyof] => return dice +
       //   split (' ') + map() over arr within to produce
       //   dots inside using each val (inc key)
