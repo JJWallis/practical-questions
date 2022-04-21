@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 const MAX_DICE = 6
 
 const dotCoordinates = {
-   1: '20:20',
-   2: '',
-   3: '',
-   4: '',
-   5: '',
-   6: '',
+   1: '20:20 30:30',
+   // 2: '',
+   // 3: '',
+   // 4: '',
+   // 5: '',
+   // 6: '',
 }
 
 const Dice: React.FC = () => {
