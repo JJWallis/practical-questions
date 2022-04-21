@@ -23,13 +23,14 @@ const Dice: React.FC = () => {
 
    const produceDice = () => {
       const randomNum = Math.floor(Math.random() * TOTAL_NUM) + 1
-      //   TODO
-      //   dotCoordinates[String(randomNum) as keyof] => return dice +
-      //   split (' ') + map() over arr within to produce
-      //   dots inside using each val (inc key)
 
+      //   TODO
       // update ref on mount with this produceDice func to store all our dice as jsxElement[]
-      //
+      // produce a number[] representing dice num (random 1-6 adding up to randomNum above)
+      // map through number[] + run fun below (take num as arg) that accesses corresponding str
+      // in dotCoordinates (idx - 1) + produces dice plus dots for each num
+      // result in arr with func call at each + setDice = arr
+
       const diceArr = dotCoordinates.map((cordPair, idx) => {
          const pair = cordPair.split(' ')
          return (
