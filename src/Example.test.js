@@ -1,17 +1,22 @@
 import * as examples from './Example'
-import { jest } from '@jest/globals'
+
+jest.mock('./Example', () => {
+   const originalModule = jest.requireActual('./Example')
+
+   return {
+      __esModule: true,
+      ...originalModule,
+      subtract: jest.fn(() => {
+         throw new Error('Invalid arguments')
+      }),
+   }
+})
 
 beforeEach(() => {
    jest.resetAllMocks()
 })
 
 it('adds and subtracts correctly', () => {
-   const mockedAdd = jest.spyOn(examples, 'add')
-   const test = jest.spyOn(examples, 'subtract').mockImplementation(() => {
-      throw new Error('Invalid arguments')
-   })
-
-   const result = mockedAdd(1, 2)
-   expect(test).toThrow()
-   expect(result).toBe('')
+   const result = examples.add(1, 2)
+   expect(examples.subtract).toThrow()
 })
